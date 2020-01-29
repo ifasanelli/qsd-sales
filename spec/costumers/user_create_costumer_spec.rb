@@ -12,6 +12,7 @@ feature 'User create costumer' do
     fill_in 'E-mail', with: 'douglas@gmail.com'
     fill_in 'Telefone', with: '(11) 96782-4553'
     fill_in 'Data de Nascimento', with: '1997-01-28'
+    click_on 'Salvar'
     # Assert
     expect(page).to have_content('Douglas Adams')
     expect(page).to have_content('Restaurante no fim do Universo')
