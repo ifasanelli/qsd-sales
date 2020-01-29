@@ -1,0 +1,6 @@
+<%= link_to 'Novo pedido', new_order_path %>
+<% @orders.each do |order| %>
+  <%= order.user.id %>
+  <%= order.customer.identification %>
+  <%= order.product %>
+<%end%>

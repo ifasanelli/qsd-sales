@@ -1,0 +1,12 @@
+<h1>Cadastrar Filial</h1>
+
+<%= form_with model: @order, local: true do |form| %>
+  <p>
+  <%= form.label :customer_id, 'Clientes' %>
+  <%= form.collection_select :customer_id, @customers, :id, :identification%>
+  <p>
+  <%= form.label :product, 'Produtos' %>
+  <%= form.collection_select :product, @products, :id, :name%>
+
+  <p><%= form.submit 'Contratar' %></p>
+<% end %>
