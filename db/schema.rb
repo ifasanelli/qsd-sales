@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_180022) do
+ActiveRecord::Schema.define(version: 2020_01_29_183208) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 2020_01_29_180022) do
     t.date "date_order"
     t.integer "status"
     t.integer "user_id", null: false
-    t.integer "costumer_id", null: false
     t.string "product"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["costumer_id"], name: "index_orders_on_costumer_id"
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -48,6 +48,6 @@ ActiveRecord::Schema.define(version: 2020_01_29_180022) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "orders", "customers", column: "costumer_id"
+  add_foreign_key "orders", "customers"
   add_foreign_key "orders", "users"
 end

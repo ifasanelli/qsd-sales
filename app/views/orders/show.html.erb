@@ -1,0 +1,10 @@
+<%= notice %>
+
+<%= @order.code %>
+<% if @order.status == 'cancelled' %>
+  Status: Cancelado
+<% end %>
+
+<% if @order.status == 'open' %>
+  <%= link_to 'Cancelar', cancel_order_path(@order) %>
+<% end %>

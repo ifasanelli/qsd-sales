@@ -1,0 +1,9 @@
+<%= form_with model: @order, local: true do |f| %>
+  <p>
+    <%= f.label :feedback %>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.submit 'Enviar' %>
+  </p>
+<% end %>

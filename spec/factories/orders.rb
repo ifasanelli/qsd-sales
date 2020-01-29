@@ -4,7 +4,7 @@ FactoryBot.define do
     date_order { "2020-01-28" }
     status { 0 }
     user { nil }
-    costumer { nil }
+    customer { nil }
     product { "MyString" }
   end
 end
