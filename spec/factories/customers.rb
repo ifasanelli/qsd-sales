@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :costumer do
+  factory :customer do
     name { "João" }
     address { "SP" }
     document { "36971828876" }
