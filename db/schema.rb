@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_191435) do
+ActiveRecord::Schema.define(version: 2020_01_29_180022) do
 
-  create_table "costumers", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "document"
@@ -48,6 +48,6 @@ ActiveRecord::Schema.define(version: 2020_01_28_191435) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "orders", "costumers"
+  add_foreign_key "orders", "customers", column: "costumer_id"
   add_foreign_key "orders", "users"
 end
