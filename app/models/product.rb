@@ -3,5 +3,6 @@ class Product
 
   def initialize(name: 'Jonas')
     @name = name
-  end  
+  end
+
 end
