@@ -13,7 +13,7 @@ feature 'User create order' do
 
     select "#{customer.name} - #{customer.document}"
     select 'Hospedagem Linux', from: 'Produto'
-    click_on 'Contratar'
+    click_on 'Efetivar'
 
     
     expect(page).to have_content(user.id)

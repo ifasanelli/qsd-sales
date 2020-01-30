@@ -3,14 +3,20 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def show
+    @order = Order.find(params[:id])
+  end
+
   def new
     @order = Order.new
     @customers = Customer.all
     @products = Product.all
   end
-  
-  def show
+
+  def edit
     @order = Order.find(params[:id])
+    @customers = Customer.all
+    @products = Product.all  
   end
 
   def create
@@ -20,6 +26,12 @@ class OrdersController < ApplicationController
     @order.save!
     
     redirect_to orders_path
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    redirect_to @order
   end
   
   private
