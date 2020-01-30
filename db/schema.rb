@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_195107) do
   create_table "orders", force: :cascade do |t|
     t.string "code"
     t.date "date_order"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "user_id", null: false
     t.integer "customer_id", null: false
     t.string "product"

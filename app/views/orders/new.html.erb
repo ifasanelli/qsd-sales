@@ -6,7 +6,7 @@
   <%= form.collection_select :customer_id, @customers, :id, :identification%>
   <p>
   <%= form.label :product, 'Produtos' %>
-  <%= form.collection_select :product, @products, :id, :name%>
+  <%= form.collection_select :product, @products, :name, :name%>
 
   <p><%= form.submit 'Contratar' %></p>
 <% end %>

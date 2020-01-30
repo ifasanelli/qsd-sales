@@ -15,10 +15,8 @@ feature 'User create order' do
     select 'Hospedagem Linux', from: 'Produto'
     click_on 'Contratar'
 
-    puts Order.all
-
     
-    # expect(page).to have_content(user.id)
+    expect(page).to have_content(user.id)
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.document)
     expect(page).to have_content(product.name)
