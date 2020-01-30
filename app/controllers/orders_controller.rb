@@ -20,8 +20,9 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @user = current_user
-    @order.user_id = 1 
+    @order.user_id = 1
     return redirect_to @order if @order.save
+
     load_customers_and_products
     render :new
   end
@@ -31,7 +32,7 @@ class OrdersController < ApplicationController
     @order.update(order_params)
     redirect_to @order
   end
-  
+
   private
 
   def order_params
