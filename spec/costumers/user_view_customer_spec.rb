@@ -4,7 +4,10 @@ feature 'User view customer' do
   scenario 'Successfully' do
     # Arrange
     customer = create(:customer)
-    other_customer = create(:customer, name: 'George R R Matin')
+    other_customer = create(:customer, name: 'George R R Matin',
+                                       email: 'george@gmail.com',
+                                       document: '440.725.668-01',
+                                       phone: '(13) 98216-7677')
     # Act
     visit root_path
     click_on 'Clientes'

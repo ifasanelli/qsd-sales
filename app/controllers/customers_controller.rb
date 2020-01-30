@@ -11,17 +11,23 @@ class CustomersController < ApplicationController
     @customer = Customer.new
   end
 
-  def edit; end
-
   def create
     @customer = Customer.new(customer_params)
-    @customer.save
-    redirect_to @customer
+    if @customer.save
+      redirect_to @customer, notice: 'Cliente cadastrado com sucesso!'
+    else
+      render :new
+    end
   end
 
+  def edit; end
+
   def update
-    @customer.update(customer_params)
-    redirect_to @customer
+    if @customer.update(customer_params)
+      redirect_to @customer, notice: 'Cliente editado com sucesso!'
+    else
+      render :edit
+    end
   end
 
   def destroy

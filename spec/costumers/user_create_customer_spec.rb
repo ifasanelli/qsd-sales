@@ -22,8 +22,9 @@ feature 'User create costumer' do
   end
 
   scenario 'Duplicated fields' do
-    customer = create(:customer, document: '198.725.668-02',
-                      phone: '(11) 96782-4553', email: 'douglas@gmail.com')
+    create(:customer, document: '198.725.668-02',
+                      phone: '(11) 96782-4553',
+                      email: 'douglas@gmail.com')
     # Act
     visit customers_path
     click_on 'Registrar Novo'
@@ -34,5 +35,12 @@ feature 'User create costumer' do
     fill_in 'Telefone', with: '(11) 96782-4553'
     fill_in 'Data de Nascimento', with: ''
     click_on 'Salvar'
+    # Assert
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Birth date can't be blank")
+    expect(page).to have_content("Address can't be blank")
+    expect(page).to have_content('Document has already been taken')
+    expect(page).to have_content('Email has already been taken')
+    expect(page).to have_content('Phone has already been taken')
   end
 end

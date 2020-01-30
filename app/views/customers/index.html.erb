@@ -1,16 +1,17 @@
 <%= link_to 'Registrar Novo', new_customer_path %>
-
-<% @customers.each do |customer| %>
-  <div>
+<div>
+  <% @customers.each do |customer| %>
     <div>
-      <%= link_to customer_path(customer) do %>
-        <%= customer.name %>
-      <% end %>
+      <div>
+        <%= link_to customer_path(customer) do %>
+          <%= customer.name %>
+        <% end %>
+      </div>
+      <div>
+        <%= customer.email %>
+      </div>
+      <div>
+      </div>
     </div>
-    <div>
-      <%= customer.email %>
-    </div>
-    <div>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

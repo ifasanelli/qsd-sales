@@ -2,4 +2,12 @@
 
 <%= link_to 'Voltar', customer_path(@customer) %>
 
+<% if @customer.errors.any? %>
+  <% @customer.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger" role="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
 <%= render partial: 'form', locals: { customer: @customer } %>
