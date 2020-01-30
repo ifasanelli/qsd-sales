@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :costumer do
+  factory :customer do
     name { 'Douglas Adams' }
     address { 'Restaurante no fim do Universo' }
     document { '198.725.668-02' }

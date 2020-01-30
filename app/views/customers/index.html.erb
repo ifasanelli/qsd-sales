@@ -1,9 +1,9 @@
-<%= link_to 'Registrar Novo', new_costumer_path %>
+<%= link_to 'Registrar Novo', new_customer_path %>
 
 <% @customers.each do |customer| %>
   <div>
     <div>
-      <%= link_to costumer_path(customer) do %>
+      <%= link_to customer_path(customer) do %>
         <%= customer.name %>
       <% end %>
     </div>

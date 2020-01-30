@@ -1,21 +1,21 @@
 require 'rails_helper'
 
-feature 'User view costumer' do
+feature 'User view customer' do
   scenario 'Successfully' do
     # Arrange
-    costumer = create(:costumer)
-    other_costumer = create(:costumer, name:'George R R Matin')
+    customer = create(:customer)
+    other_customer = create(:customer, name: 'George R R Matin')
     # Act
-    visit root_path 
+    visit root_path
     click_on 'Clientes'
-    click_on "#{costumer.name}"
+    click_on customer.name.to_s
     # Assert
-    expect(page).to have_content(costumer.name)
-    expect(page).to have_content(costumer.address)
-    expect(page).to have_content(costumer.document)
-    expect(page).to have_content(costumer.email)
-    expect(page).to have_content(costumer.phone)
-    expect(page).to have_content(costumer.birth_date)
-    expect(page).not_to have_content(other_costumer.name)
+    expect(page).to have_content(customer.name)
+    expect(page).to have_content(customer.address)
+    expect(page).to have_content(customer.document)
+    expect(page).to have_content(customer.email)
+    expect(page).to have_content(customer.phone)
+    expect(page).to have_content(customer.birth_date)
+    expect(page).not_to have_content(other_customer.name)
   end
 end

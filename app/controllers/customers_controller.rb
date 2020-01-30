@@ -1,18 +1,18 @@
-class CostumersController < ApplicationController
+class CustomersController < ApplicationController
   def index
-    @customers = Costumer.all
+    @customers = Customer.all
   end
 
   def show
-    @customer = Costumer.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def new
-    @customer = Costumer.new
+    @customer = Customer.new
   end
 
   def create
-    @customer = Costumer.new(customer_params)
+    @customer = Customer.new(customer_params)
     @customer.save
     redirect_to @customer
   end
