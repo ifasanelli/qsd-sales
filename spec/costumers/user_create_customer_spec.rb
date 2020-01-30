@@ -20,4 +20,19 @@ feature 'User create costumer' do
     expect(page).to have_content('(11) 96782-4553')
     expect(page).to have_content('1997-01-28')
   end
+
+  scenario 'Duplicated fields' do
+    customer = create(:customer, document: '198.725.668-02',
+                      phone: '(11) 96782-4553', email: 'douglas@gmail.com')
+    # Act
+    visit customers_path
+    click_on 'Registrar Novo'
+    fill_in 'Nome', with: ''
+    fill_in 'Endereço', with: ''
+    fill_in 'CPF', with: '198.725.668-02'
+    fill_in 'E-mail', with: 'douglas@gmail.com'
+    fill_in 'Telefone', with: '(11) 96782-4553'
+    fill_in 'Data de Nascimento', with: ''
+    click_on 'Salvar'
+  end
 end
