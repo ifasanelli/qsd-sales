@@ -1,12 +1,19 @@
-<h1>Cadastrar Filial</h1>
+<h1>Cadastrar Pedido</h1>
+
+  <% if @order.errors.any? %>
+  <% @order.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
 
 <%= form_with model: @order, local: true do |form| %>
+
   <p>
   <%= form.label :customer_id, 'Clientes' %>
-  <%= form.collection_select :customer_id, @customers, :id, :identification%>
+  <%= form.collection_select :customer_id, @customers, :id, :identification, prompt: true %>
   <p>
   <%= form.label :product, 'Produtos' %>
-  <%= form.collection_select :product, @products, :name, :name%>
+  <%= form.collection_select :product, @products, :name, :name, prompt: true %>
 
   <p><%= form.submit 'Efetivar' %></p>
 <% end %>
