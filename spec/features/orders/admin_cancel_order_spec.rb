@@ -20,4 +20,17 @@ feature 'Admin cancel order' do
     expect(page).not_to have_link('Cancelar')
   end
 
+  scenario 'and cancellation reason should not be empty' do
+    user = create(:user)
+    customer = create(:customer)
+    order = create(:order, user: user, customer: customer)
+
+    visit order_path(order)
+    click_on 'Cancelar'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Motivo de cancelamento não pode ficar em branco')
+    expect(page).to have_content("#{order.code}")
+  end
+
 end

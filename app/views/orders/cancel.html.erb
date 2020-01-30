@@ -1,9 +1,21 @@
-<%= form_with model: @order, local: true do |f| %>
+<h1>Cancelamento</h1>
+
+<%= "Pedido: #{@order.code}" %>
+
+<% if @order.errors.any? %>
+  <ul>
+  <% @order.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_with url: {action: :finish_cancel}, model: @order, local: true do |f| %>
   <p>
-    <%= f.label :feedback %>
-    <%= f.text_field :email %>
+    <%= f.label :cancellation_reason, 'Motivo do Cancelamento' %>
+    <%= f.text_field :cancellation_reason %>
   </p>
   <p>
-    <%= f.submit 'Enviar' %>
+    <%= f.submit 'Enviar'  %>
   </p>
 <% end %>

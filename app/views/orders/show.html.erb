@@ -3,6 +3,7 @@
 <%= @order.code %>
 <% if @order.status == 'cancelled' %>
   Status: Cancelado
+  Motivo: <%= @order.cancellation_reason %>
 <% end %>
 
 <% if @order.status == 'open' %>
