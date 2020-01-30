@@ -1,0 +1,31 @@
+<%= form_with model: customer, class: 'ls-form row' do |f| %>
+  <div>
+    <%= f.label :name, 'Nome', class: 'ls-label col-md-5' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :address, 'Endereço', class: 'ls-label col-md-3' %>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label :document, 'CPF', class: 'ls-label col-md-3' %>
+    <%= f.text_field :document %>
+  </div>
+  <div>
+    <%= f.label :email, 'E-mail', class: 'ls-label col-md-3' %>
+    <%= f.text_field :email %>
+  </div>
+  <div>  
+    <%= f.label :phone, 'Telefone', class: 'ls-label col-md-3' %>
+    <%= f.text_field :phone %>
+  </div>
+  <div>  
+    <%= f.label :birth_date, 'Data de Nascimento', class: 'ls-label col-md-3' %>
+    <%= f.text_field :birth_date %>
+  </div>
+  <div>
+    <div class='ls-actions-btn' >
+        <%= f.submit 'Salvar', class: 'ls-btn' %>
+    </div>
+  </div>
+<% end %>

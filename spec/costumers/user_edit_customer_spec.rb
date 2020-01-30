@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User edit costumer' do
+feature 'User edit customer' do
   scenario 'successfully' do
     # Arrange
     customer = create(:customer)
@@ -9,7 +9,7 @@ feature 'User edit costumer' do
     click_on 'Clientes'
     click_on customer.name.to_s
     click_on 'Editar'
-    fill_in 'Nome' with: 'George R R Martin'
+    fill_in 'Nome', with: 'George R R Martin'
     click_on 'Salvar'
     # Assert
     expect(page).not_to have_content(customer.name)
