@@ -38,7 +38,7 @@ feature 'User create costumer' do
     # Assert
     expect(page).to have_content('Nome não pode ficar em branco')
     expect(page).to have_content('Data de nascimento não pode ficar em branco')
-    expect(page).to have_content("Endereço não pode ficar em branco")
+    expect(page).to have_content('Endereço não pode ficar em branco')
     expect(page).to have_content('CPF já está em uso')
     expect(page).to have_content('Email já está em uso')
     expect(page).to have_content('Telefone já está em uso')
