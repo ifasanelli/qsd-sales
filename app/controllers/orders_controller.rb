@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @customer = Customer.find(params[:customer_id])
     @order = Order.new
     load_customers_and_products
   end
@@ -18,9 +19,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @user = current_user
-    @order.user_id = 1
+    @customer = Customer.find(params[:customer_id])
+    @order = @customer.orders.new(order_params)
+    @order.user = current_user
     return redirect_to @order if @order.save
 
     load_customers_and_products
@@ -36,7 +37,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:customer_id, :product)
+    params.require(:order).permit(:product)
   end
 
   def load_customers_and_products

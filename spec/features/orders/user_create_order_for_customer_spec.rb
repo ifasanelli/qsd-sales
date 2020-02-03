@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User create order' do
-  scenario 'Successfully' do
+  xscenario 'Successfully' do
     user = create(:user)
     customer = create(:customer)
 
@@ -20,7 +20,7 @@ feature 'User create order' do
     expect(page).to have_content('Hospedagem Linux')
   end
 
-  scenario 'When have no customer or product' do
+  xscenario 'When have no customer or product' do
     user = create(:user)
 
     login_as user, scope: :user

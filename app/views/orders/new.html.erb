@@ -6,12 +6,8 @@
     <% end %>
   <% end %>
 
-<%= form_with model: @order, local: true do |form| %>
+<%= form_with model: [@customer, @order], local: true do |form| %>
 
-  <p>
-  <%= form.label :customer_id, 'Clientes' %>
-  <%= form.collection_select :customer_id, @customers, :id, :identification, prompt: true %>
-  <p>
   <%= form.label :product, 'Produtos' %>
   <%= form.collection_select :product, @products, :name, :name, prompt: true %>
 
