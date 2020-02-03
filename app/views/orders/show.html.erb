@@ -1,9 +1,10 @@
 <%= notice %>
 
 <%= @order.code %>
-<% if @order.status == 'cancelled' %>
-  Status: Cancelado
-  Motivo: <%= @order.cancellation_reason %>
+<p>Status: <%= Order.human_attribute_name(@order.status) %></p>
+<% if @order.cancelled? %>
+  <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3> 
+  <p><%= @order.cancellation_reason %></p>
 <% end %>
 
 <% if @order.status == 'open' %>

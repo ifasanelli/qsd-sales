@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.status = :cancelled
     return redirect_to order_path(@order), 
-      notice: 'Pedido cancelado com sucesso' if @order.update(order_params)
+      notice: t('.success') if @order.update(order_params)
     
     render :cancel
   end

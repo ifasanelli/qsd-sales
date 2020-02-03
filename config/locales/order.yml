@@ -1,0 +1,16 @@
+---
+pt-BR:
+  orders:
+    finish_cancel:
+      success: 'Pedido cancelado com sucesso'
+  activerecord:
+    models:
+      order:
+        one: 'Pedido'
+        other: 'Pedidos'
+    attributes:
+      order:
+        cancellation_reason: 'Motivo de cancelamento'
+        cancelled: 'Cancelado'
+        open: 'Pendente'
+        approved: 'Aprovado'
