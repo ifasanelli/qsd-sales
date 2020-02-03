@@ -1,17 +1,18 @@
 <%= link_to 'Registrar Novo', new_customer_path %>
-<div>
+
+<table class="ls-table">
   <% @customers.each do |customer| %>
-    <div>
-      <div>
-        <%= link_to customer_path(customer) do %>
-          <%= customer.name %>
-        <% end %>
-      </div>
-      <div>
-        <%= customer.email %>
-      </div>
-      <div>
-      </div>
-    </div>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to customer.name, customer_path(customer) %></td>
+        <td><%= customer.email %></td>
+      </tr>
+    </tbody>
   <% end %>
-</div>
+</table>
