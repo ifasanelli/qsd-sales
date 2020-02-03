@@ -36,11 +36,11 @@ feature 'User create costumer' do
     fill_in 'Data de Nascimento', with: ''
     click_on 'Salvar'
     # Assert
-    expect(page).to have_content("Name can't be blank")
-    expect(page).to have_content("Birth date can't be blank")
-    expect(page).to have_content("Address can't be blank")
-    expect(page).to have_content('Document has already been taken')
-    expect(page).to have_content('Email has already been taken')
-    expect(page).to have_content('Phone has already been taken')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Data de nascimento não pode ficar em branco')
+    expect(page).to have_content("Endereço não pode ficar em branco")
+    expect(page).to have_content('CPF já está em uso')
+    expect(page).to have_content('Email já está em uso')
+    expect(page).to have_content('Telefone já está em uso')
   end
 end
