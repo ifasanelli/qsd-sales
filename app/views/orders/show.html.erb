@@ -1,12 +1,15 @@
-<%= notice %>
-
-<%= @order.code %>
-<p>Status: <%= Order.human_attribute_name(@order.status) %></p>
+<div class="ls-title-3">Pedido: <%= @order.code %></div>
+<span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
 <% if @order.cancelled? %>
-  <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3> 
-  <p><%= @order.cancellation_reason %></p>
+  <div class="reason">
+    <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3> 
+    <div class="why"><%= @order.cancellation_reason %></div>
+  </div>
 <% end %>
+<div class="button">
+  <% if @order.status == 'open' %>
+    <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn-primary-danger ls-ico-remove"  %>
+  <% end %>
+</div>
 
-<% if @order.status == 'open' %>
-  <%= link_to 'Cancelar', cancel_order_path(@order) %>
-<% end %>
+<hr>

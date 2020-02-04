@@ -12,5 +12,5 @@ pt-BR:
       order:
         cancellation_reason: 'Motivo de cancelamento'
         cancelled: 'Cancelado'
-        open: 'Pendente'
+        open: 'Aberto'
         approved: 'Aprovado'

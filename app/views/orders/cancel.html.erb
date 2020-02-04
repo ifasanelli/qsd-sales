@@ -1,21 +1,27 @@
-<h1>Cancelamento</h1>
+<h1 class="title">Cancelamento</h1>
 
-<%= "Pedido: #{@order.code}" %>
+<div class="order">
+  <%= "Pedido: #{@order.code}" %>
+</div>
 
 <% if @order.errors.any? %>
-  <ul>
-  <% @order.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-  </ul>
+  <div class="errors">
+    <% @order.errors.full_messages.each do |message| %>
+      <div class="ls-alert-danger"><%= message %></div>
+    <% end %>
+  </div>
 <% end %>
 
 <%= form_with url: {action: :finish_cancel}, model: @order, local: true do |f| %>
-  <p>
-    <%= f.label :cancellation_reason, 'Motivo do Cancelamento' %>
-    <%= f.text_field :cancellation_reason %>
-  </p>
-  <p>
-    <%= f.submit 'Enviar'  %>
-  </p>
+  <div class="ls-form ls-form-horizontal row">
+    <div class="ls-label col-md-12 form-row">
+      <%= f.label :cancellation_reason %>
+      <%= f.text_field :cancellation_reason %>
+    </div>
+  </div>
+    <div class="button">
+      <%= f.submit 'Enviar', class: "ls-btn-primary"  %>
+    </div>
 <% end %>
+
+<hr>

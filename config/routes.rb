@@ -6,5 +6,4 @@ Rails.application.routes.draw do
     patch 'finish_cancel', on: :member
     get 'cancel', on: :member
   end
-
 end

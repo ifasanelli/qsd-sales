@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+
+ .errors {
+  margin-top: 20px;
+}
+
+.order {
+  margin-top:20px;
+}
+
+.title { 
+  margin-top: 20px
+}
+
+.button {
+  margin-top: 10px;
+}
+
+.form-row {
+  margin-top: 10px;
+}
+
+.alerts {
+  margin-top: 10px;
+}
+
+.status {
+  font-size: 13px;
+}
+
+.reason {
+  margin-top: 20px;
+}
+
+.why {
+  margin-top: 10px;
+}
