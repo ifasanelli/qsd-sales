@@ -1,0 +1,11 @@
+<h1>Novo Cliente</h1>
+
+<% if @customer.errors.any? %>
+  <% @customer.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger" role="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= render partial: 'form', locals: { customer: @customer } %>

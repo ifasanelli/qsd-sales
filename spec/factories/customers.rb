@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :customer do
-    name { 'MyString' }
-    address { 'MyString' }
-    document { 'MyString' }
-    email { 'MyString' }
-    phone { 'MyString' }
-    birth_date { '2020-01-29' }
+    name { 'Douglas Adams' }
+    address { 'Restaurante no fim do Universo' }
+    document { '198.725.668-02' }
+    email { 'douglas@gmail.com' }
+    phone { '(11) 96782-4553' }
+    birth_date { '1997-01-28' }
   end
 end

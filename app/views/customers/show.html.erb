@@ -1,0 +1,30 @@
+<h2>Cliente</h2>
+
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>CPF</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Data de Nascimento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @customer.name %></td>
+      <td><%= @customer.address %></td>
+      <td><%= @customer.document %></td>
+      <td><%= @customer.email %></td>
+      <td><%= @customer.phone %></td>
+      <td><%= @customer.birth_date %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%= link_to 'Editar', edit_customer_path %>
+
+<%= link_to 'Apagar', customer_path(@customer), method: :delete,
+    data: { confirm: "Tem certeza de que deseja deletar #{@customer.name}"} %>

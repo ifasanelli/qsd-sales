@@ -16,6 +16,9 @@
 
     <main class="ls-main">
       <div class="container-fluid">
+        <nav>
+          <%= link_to 'Clientes', customers_path %>
+        </nav>
         <div class="alerts">
           <% if notice %>
             <div class="ls-alert-success" role="alert"> <%= notice %> </div>
