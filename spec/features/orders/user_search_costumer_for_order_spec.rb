@@ -6,7 +6,6 @@ feature 'User search costumer for order' do
     customer = create(:customer)
 
     login_as user, scope: :user
-
     visit root_path
     click_on 'Clientes'
     fill_in 'Pesquisar', with: '36971828876'
@@ -15,7 +14,6 @@ feature 'User search costumer for order' do
     select 'Hospedagem Linux', from: 'Produto'
     click_on 'Efetivar'
 
-   
     expect(page).to have_content(user.id)
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.document)
@@ -25,6 +23,7 @@ feature 'User search costumer for order' do
   scenario 'Customer must be exist' do
     user = create(:user)
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     fill_in 'Pesquisar', with: '123123'
