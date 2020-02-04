@@ -11,7 +11,7 @@ feature 'User search costumer for order' do
     fill_in 'Pesquisar', with: '36971828876'
     click_on 'Buscar'
     click_on 'Novo Pedido'
-    select 'Hospedagem Linux', from: 'Produto'
+    select 'Hospedagem Linux', from: 'Produtos'
     click_on 'Efetivar'
 
     expect(page).to have_content(user.id)

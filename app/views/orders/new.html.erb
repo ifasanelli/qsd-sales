@@ -8,7 +8,7 @@
 
 <%= form_with model: [@customer, @order], local: true do |form| %>
 
-  <%= form.label :product, 'Produtos' %>
+  <%= form.label :product %>
   <%= form.collection_select :product, @products, :name, :name, prompt: true %>
 
   <p><%= form.submit 'Efetivar' %></p>

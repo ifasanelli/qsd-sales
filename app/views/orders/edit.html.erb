@@ -1,7 +1,7 @@
 <h1>Editar Pedido</h1>
 <%= form_with model: @order, local: true do |form| %>
   <p>
-  <%= form.label :customer_id, 'Clientes' %>
+  <%= form.label :customer_id %>
   <%= form.collection_select :customer_id, @customers, :id, :identification, prompt: true %>
   <p>
   <%= form.label :product, 'Produtos' %>
