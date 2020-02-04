@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :orders, only: [:show] do
-    patch 'finish_cancel', on: :member
     get 'cancel', on: :member
+    patch 'finish_cancel', on: :member
+    patch 'approve', on: :member
   end
   resources :customers
 end
