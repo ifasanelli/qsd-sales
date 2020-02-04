@@ -6,5 +6,7 @@ FactoryBot.define do
     user
     customer
     product { 'MyString' }
+    plan { 1 }
+    price { 1 }
   end
 end

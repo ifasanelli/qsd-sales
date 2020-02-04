@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    puts params
     @customer = Customer.find(params[:customer_id])
     @order = @customer.orders.new(order_params)
     @order.user = current_user
@@ -37,11 +38,13 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:product)
+    params.require(:order).permit(:product, :plan, :price)
   end
 
   def load_customers_and_products
     @customers = Customer.all
     @products = Product.all
+    @plans = Plan.all
+    @prices = Price.all
   end
 end

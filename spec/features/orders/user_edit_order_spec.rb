@@ -12,7 +12,9 @@ feature 'User edit any order' do
     click_on 'Alterar'
 
     select "#{order.customer.name} - #{order.customer.document}"
-    select 'Hospedagem Windows', from: 'Produtos'
+    select 'Hospedagem', from: 'Produtos'
+    select 'Windows', from: 'Planos'
+    select '3 meses', from: 'Período'
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)
