@@ -19,9 +19,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    puts params
     @customer = Customer.find(params[:customer_id])
     @order = @customer.orders.new(order_params)
+    @product = Product.find(@order.product_id)
     @order.user = current_user
     return redirect_to @order if @order.save
 
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:product, :plan, :price)
+    params.require(:order).permit(:product_id, :plan_id, :price_id)
   end
 
   def load_customers_and_products

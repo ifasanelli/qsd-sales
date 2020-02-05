@@ -5,8 +5,8 @@ FactoryBot.define do
     status { 0 }
     user
     customer
-    product { 'MyString' }
-    plan { 1 }
-    price { 1 }
+    product_id { 1 }
+    plan_id { 1 }
+    price_id { 1 }
   end
 end

@@ -17,4 +17,6 @@ pt-BR:
         status: 'Status'
         user: 'Usuário'
         customer: 'Cliente'
-        product: 'Produtos'
+        product_id: 'Produtos'
+        plan_id: 'Planos'
+        price_id: 'Preco'

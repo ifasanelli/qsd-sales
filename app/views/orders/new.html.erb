@@ -8,14 +8,14 @@
 
 <%= form_with model: [@customer, @order], local: true do |form| %>
 
-  <%= form.label :product %>
-  <%= form.collection_select :product, @products, :name, :name, prompt: true %>
+  <%= form.label :product_id %>
+  <%= form.collection_select :product_id, @products, :id, :name, prompt: true %>
 
-  <%= form.label :plan, 'Planos' %>
-  <%= form.collection_select :plan, @plans, :id, :name, prompt: true %>
+  <%= form.label :plan_id, 'Planos' %>
+  <%= form.collection_select :plan_id, @plans, :id, :name, prompt: true %>
 
-  <%= form.label :price, 'Período' %>
-  <%= form.collection_select :price, @prices, :id, :name, prompt: true %>
+  <%= form.label :price_id, 'Período' %>
+  <%= form.collection_select :price_id, @prices, :id, :name, prompt: true %>
   
   <p><%= form.submit 'Efetivar' %></p>
 <% end %>

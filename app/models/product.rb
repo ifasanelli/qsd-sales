@@ -10,4 +10,8 @@ class Product
     [new(id: 1, name: 'Hospedagem'),
      new(id: 2, name: 'Cloud')]
   end
+
+  def self.find(product_id)
+    @product = all.detect { |product| product.id == product_id }
+  end
 end

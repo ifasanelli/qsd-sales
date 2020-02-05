@@ -1,7 +1,7 @@
 <%= @order.code%>
 <%= @order.user.id %>
 <%= @order.customer.identification %>
-<%= @order.product %>
-<%= @order.plan %>
-<%= @order.price %>
+<%= @product %>
+<%= @order.plan_id %>
+<%= @order.price_id %>
 <%= link_to 'Alterar', edit_order_path(@order) %>

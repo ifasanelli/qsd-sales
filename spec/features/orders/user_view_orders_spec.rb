@@ -12,7 +12,7 @@ feature 'User view all orders' do
     expect(page).to have_content(order.user.id)
     expect(page).to have_content(order.customer.name)
     expect(page).to have_content(order.customer.document)
-    expect(page).to have_content(order.product)
+    expect(page).to have_content(order.product_id)
   end
 
   scenario 'User view order' do
@@ -27,6 +27,6 @@ feature 'User view all orders' do
     expect(page).to have_content(order.user.id)
     expect(page).to have_content(order.customer.name)
     expect(page).to have_content(order.customer.document)
-    expect(page).to have_content(order.product)
+    expect(page).to have_content(order.product_id)
   end
 end
