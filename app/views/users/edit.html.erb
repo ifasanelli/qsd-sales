@@ -1,0 +1,27 @@
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label(:seller, "Vendedor") %>
+    <%= f.radio_button(:role, :seller) %>
+    <%= f.label(:admin, "Administrador") %>
+    <%= f.radio_button(:role, :admin) %>
+  </div>
+ 
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

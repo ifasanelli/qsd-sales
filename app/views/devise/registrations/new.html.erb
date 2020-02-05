@@ -21,13 +21,6 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= radio_button_tag(:role, :seller) %>
-    <%= label_tag(:seller, "Vendedor") %>
-    <%= radio_button_tag(:role, :admin) %>
-    <%= label_tag(:admin, "Administrador") %>
-  </div>
-
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
