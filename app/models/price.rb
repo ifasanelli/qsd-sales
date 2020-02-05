@@ -14,4 +14,8 @@ class Price
     new(id: 9, name: '9 Meses', valor: '90 pila'),
     new(id: 12, name: '12 Meses', valor: '120 pila')]
   end
+
+  def self.find(price_id)
+    @price = all.detect { |price| price.id == price_id}
+  end
 end
