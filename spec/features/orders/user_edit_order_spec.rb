@@ -18,8 +18,10 @@ feature 'User edit any order' do
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)
-    expect(page).to have_content('Hospedagem')
     expect(page).to have_content(order.customer.name)
     expect(page).to have_content(order.customer.document)
+    expect(page).to have_content('Hospedagem')
+    expect(page).to have_content('Windows')
+    expect(page).to have_content('3 Meses')
   end
 end

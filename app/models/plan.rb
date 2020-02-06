@@ -12,6 +12,6 @@ class Plan
   end
 
   def self.find(plan_id)
-    @plan = all.detect { |plan| plan.id == plan_id } 
+    @plan = all.detect { |plan| plan.id == plan_id }
   end
 end

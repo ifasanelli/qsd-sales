@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @product = Product.find(@order.product_id)
+    @plan = Plan.find(@order.plan_id)
+    @price = Price.find(@order.price_id)
   end
 
   def new

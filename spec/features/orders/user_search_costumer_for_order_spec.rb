@@ -20,6 +20,8 @@ feature 'User search costumer for order' do
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.document)
     expect(page).to have_content('Hospedagem')
+    expect(page).to have_content('Linux')
+    expect(page).to have_content('3 Meses')
   end
 
   scenario 'Customer must be exist' do
