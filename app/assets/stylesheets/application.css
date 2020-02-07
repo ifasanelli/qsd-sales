@@ -45,17 +45,8 @@
   margin: 20px 0px;
 }
 
-.teste {
-  display: inline-block; 
-  position: fixed;
-}
-
 td > a {
   font-size: 20px;
-}
-
-.edit {
-  color: rgb(105, 30, 0);
 }
 
 .button {
