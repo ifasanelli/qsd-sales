@@ -9,5 +9,13 @@ RSpec.describe Price, type: :model do
 
       expect(result.id == price.id).to eq(true)
     end
+
+    it 'expose price' do
+      price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+
+      result = price.expose
+
+      expect(result).to eq "#{price.name} - #{price.valor}"
+    end
   end
 end

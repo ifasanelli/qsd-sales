@@ -11,7 +11,7 @@
   <%= form.collection_select :plan_id, @plans, :id, :name, prompt: true %>
 
   <%= form.label :price_id, 'Período' %>
-  <%= form.collection_select :price_id, @prices, :id, :name, prompt: true %>
+  <%= form.collection_select :price_id, @prices, :id, :expose, prompt: true %>
 
   <p><%= form.submit 'Efetivar' %></p>
 <% end %>

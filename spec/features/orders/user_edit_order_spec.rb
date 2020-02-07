@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'User edit any order' do
   scenario 'Sucessfully' do
+    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     user = create(:user, email: 'xaviervi@hotmail.com')
     order = create(:order)
 
@@ -14,7 +15,7 @@ feature 'User edit any order' do
     select "#{order.customer.name} - #{order.customer.document}"
     select 'Hospedagem', from: 'Produtos'
     select 'Windows', from: 'Planos'
-    select '3 Meses', from: 'Período'
+    select "#{price.name} - #{price.valor}", from: 'Período'
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)
@@ -22,6 +23,6 @@ feature 'User edit any order' do
     expect(page).to have_content(order.customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Windows')
-    expect(page).to have_content('3 Meses')
+    expect(page).to have_content("#{price.name} - #{price.valor}")
   end
 end

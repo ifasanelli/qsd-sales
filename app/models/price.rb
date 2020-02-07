@@ -1,5 +1,5 @@
 class Price
-  attr_accessor :name, :id
+  attr_accessor :name, :id, :valor
 
   def initialize(id: 0, name: '', valor: 0)
     @name = name
@@ -17,5 +17,9 @@ class Price
 
   def self.find(price_id)
     @price = all.detect { |price| price.id == price_id }
+  end
+
+  def expose
+    "#{name} - #{valor}"
   end
 end

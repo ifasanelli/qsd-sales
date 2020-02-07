@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'User search costumer for order' do
   scenario 'sucessfully' do
+    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     user = create(:user)
     customer = create(:customer)
 
@@ -13,7 +14,7 @@ feature 'User search costumer for order' do
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produtos'
     select 'Linux', from: 'Planos'
-    select '3 Meses', from: 'Período'
+    select "#{price.name} - #{price.valor}", from: 'Período'
     click_on 'Efetivar'
 
     expect(page).to have_content(user.id)
@@ -21,7 +22,7 @@ feature 'User search costumer for order' do
     expect(page).to have_content(customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
-    expect(page).to have_content('3 Meses')
+    expect(page).to have_content("#{price.name} - #{price.valor}")
   end
 
   scenario 'Customer must be exist' do
