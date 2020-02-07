@@ -1,7 +1,4 @@
-<h1>Editar Cliente</h1>
-
-<%= link_to 'Voltar', customer_path(@customer) %>
-
+<h1 class="title">Editar Cliente</h1>
 <% if @customer.errors.any? %>
   <% @customer.errors.full_messages.each do |message| %>
     <div class="alert alert-danger" role="alert">
@@ -10,4 +7,4 @@
   <% end %>
 <% end %>
 
-<%= render partial: 'form', locals: { customer: @customer } %>
+<%= render partial: 'form', locals: { customer: @customer } %> 

@@ -1,8 +1,8 @@
-<h1>Novo Cliente</h1>
+<h1 class="title">Novo Cliente</h1>
 
 <% if @customer.errors.any? %>
   <% @customer.errors.full_messages.each do |message| %>
-    <div class="alert alert-danger" role="alert">
+    <div class="ls-alert-danger" role="alert">
       <%= message %>
     </div>
   <% end %>

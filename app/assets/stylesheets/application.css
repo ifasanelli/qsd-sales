@@ -18,12 +18,44 @@
   margin-top: 20px;
 }
 
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.align-item {
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.signin {
+  text-align: center;
+}
+
+.title-signin {
+  margin-top: 6vw;
+}
+
 .order {
   margin-top:20px;
 }
 
 .title { 
-  margin-top: 20px
+  margin: 20px 0px;
+}
+
+.teste {
+  display: inline-block; 
+  position: fixed;
+}
+
+td > a {
+  font-size: 20px;
+}
+
+.edit {
+  color: rgb(105, 30, 0);
 }
 
 .button {

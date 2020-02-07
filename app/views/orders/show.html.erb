@@ -8,7 +8,7 @@
 <% end %>
 <div class="button">
   <% if @order.status == 'open' %>
-    <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn-primary-danger ls-ico-remove"  %>
+    <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn", style: "color: rgb(105, 30, 0);" %>
   <% end %>
 </div>
 
