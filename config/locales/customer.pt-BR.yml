@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      customer: 'Cliente'
+    attributes:
+      customer:
+        address: 'Endereço'
+        name: 'Nome'
+        phone: 'Telefone'
+        birth_date: 'Data de nascimento'
+        document: 'CPF'

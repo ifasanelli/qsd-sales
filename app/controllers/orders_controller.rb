@@ -38,10 +38,23 @@ class OrdersController < ApplicationController
     redirect_to @order
   end
 
+  def cancel
+    @order = Order.find(params[:id])
+  end
+
+  def finish_cancel
+    @order = Order.find(params[:id])
+    @order.status = :cancelled
+    return render :cancel unless @order.update(order_params)
+
+    redirect_to order_path(@order), notice: t('.success')
+  end
+
   private
 
   def order_params
-    params.require(:order).permit(:product_id, :plan_id, :price_id)
+    params.require(:order).permit(:product_id, :plan_id,
+                                  :price_id, :cancellation_reason)
   end
 
   def load_customers_and_products

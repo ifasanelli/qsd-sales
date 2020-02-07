@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :customer do
-    name { 'João' }
-    address { 'SP' }
-    document { '36971828876' }
-    email { 'joao@gmail.com' }
-    phone { '11-967679823' }
-    birth_date { '2002-01-28' }
+    name { 'Douglas Adams' }
+    address { 'Restaurante no fim do Universo' }
+    document { '198.725.668-02' }
+    email { 'douglas@gmail.com' }
+    phone { '(11) 96782-4553' }
+    birth_date { '1997-01-28' }
   end
 end

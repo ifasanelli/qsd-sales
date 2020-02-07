@@ -9,7 +9,7 @@ feature 'User search costumer for order' do
     login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
-    fill_in 'Pesquisar', with: '36971828876'
+    fill_in 'Pesquisar', with: '198.725.668-02'
     click_on 'Buscar'
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produtos'

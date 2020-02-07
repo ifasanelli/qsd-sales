@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_02_05_190918) do
     t.integer "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cancellation_reason"
     t.integer "plan_id"
     t.integer "price_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
