@@ -14,7 +14,7 @@ feature 'User search costumer for order' do
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produtos'
     select 'Linux', from: 'Planos'
-    select "#{price.name} - #{price.valor}", from: 'Período'
+    select "#{price.name} - #{price.valor}", from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(user.id)
