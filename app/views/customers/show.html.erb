@@ -23,7 +23,7 @@
   </tbody>
 </table>
 
-<%= link_to 'Editar', edit_customer_path(@customer), class: "ls-btn", style: "color: rgb(79, 89, 216);" %>
-<%= link_to 'Apagar', customer_path(@customer), method: :delete, class: "ls-btn", style: "color: rgb(105, 30, 0);",
+<%= link_to 'Editar', edit_customer_path(@customer), class: "ls-btn blue-theme" %>
+<%= link_to 'Apagar', customer_path(@customer), method: :delete, class: "ls-btn red-delete",
 data: { confirm: "Tem certeza de que deseja deletar #{@customer.name}?"} %>
 <%= link_to 'Voltar', customers_path, class:"ls-btn" %>
