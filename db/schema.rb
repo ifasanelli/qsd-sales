@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_194827) do
+ActiveRecord::Schema.define(version: 2020_01_30_165452) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2020_02_05_194827) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "customer_id"
     t.string "cancellation_reason"
-    t.integer "coupon"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

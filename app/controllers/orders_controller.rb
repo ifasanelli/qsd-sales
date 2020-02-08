@@ -18,8 +18,6 @@ class OrdersController < ApplicationController
   def approve
     @order = Order.find(params[:id])
     return redirect_to @order, notice: t('.success') if @order.approved!
-
-    render :show
   end
 
   private
