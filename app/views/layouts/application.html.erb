@@ -4,12 +4,12 @@
     <title>QsdSales</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css">
     <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
     <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png">
-
   </head>
 
   <body>
@@ -18,8 +18,17 @@
     <main class="ls-main">
       <div class="container-fluid">
         <nav>
-          <%= link_to 'Clientes', customers_path %>
-          <%= link_to 'Pedidos', orders_path  %>
+          <% if user_signed_in? %>
+            <span>Olá, <%= current_user.email %></span>
+            <%= link_to 'Pedidos', orders_path  %>
+            <%= link_to 'Clientes', customers_path %>
+            <% if current_user.admin? %>
+              <%= link_to 'Usuários', users_path %>
+            <% end %>
+            <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Entrar', new_user_session_path %>
+          <% end %>
         </nav>
         <div class="alerts">
           <% if notice %>
