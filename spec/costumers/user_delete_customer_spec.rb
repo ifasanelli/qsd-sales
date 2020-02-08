@@ -12,7 +12,7 @@ feature 'User delete customer' do
     visit root_path
     click_on 'Clientes'
     within("tr#customer-#{customer.id}") do
-      find('.ls-ico-zoomin').click
+      find("a[href='#{customer_path(customer)}'][data-method='get']").click
     end
     click_on 'Apagar'
     # Assert
@@ -32,7 +32,7 @@ feature 'User delete customer' do
     visit root_path
     click_on 'Clientes'
     within("tr#customer-#{customer.id}") do
-      find('.ls-ico-remove').click
+      find("a[href='#{customer_path(customer)}'][data-method='delete']").click
     end
     # Assert
     expect(current_path).to eq(customers_path)

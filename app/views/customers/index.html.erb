@@ -14,10 +14,16 @@
         <td><%= customer.name %></td>
         <td><%= customer.email %></td>
         <td>
-          <%= link_to '', customer_path(customer), class: "ls-ico-zoomin" %>
-          <%= link_to '', edit_customer_path(customer), class: "ls-ico-pencil" %>
-          <%= link_to '', customer_path(customer), method: :delete, class: "ls-ico-remove",
-          data: { confirm: "Tem certeza de que deseja deletar #{customer.name}?"} %>
+          <%= link_to customer_path(customer), method: :get do %>
+            <i class="ls-ico-zoomin"></i><span class="sr-only">Visualizar</span>
+          <% end %>
+          <%= link_to edit_customer_path(customer) do %>
+            <i class="ls-ico-pencil"></i><span class="sr-only">Editar</span>
+          <% end %>
+          <%= link_to customer_path(customer), method: :delete, 
+          data: { confirm: "Tem certeza de que deseja deletar #{customer.name}?"} do %>
+            <i class="ls-ico-remove"></i><span class="sr-only">Deletar</span>
+          <% end %>
         </td>
       </tr>
     </tbody>

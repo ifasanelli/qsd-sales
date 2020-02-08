@@ -12,7 +12,7 @@ feature 'User view customer' do
     visit root_path
     click_on 'Clientes'
     within("tr#customer-#{customer.id}") do
-      find('.ls-ico-zoomin').click
+      find("a[href='#{customer_path(customer)}'][data-method='get']").click
     end
     # Assert
     expect(page).to have_content(customer.name)

@@ -9,6 +9,7 @@ feature 'User edit customer' do
     click_on 'Clientes'
     within("tr#customer-#{customer.id}") do
       find('.ls-ico-zoomin').click
+      find("a[href='#{customer_path(customer)}'][data-method='get']").click
     end
     click_on 'Editar'
     fill_in 'Nome', with: 'George R R Martin'
@@ -27,7 +28,7 @@ feature 'User edit customer' do
     visit root_path
     click_on 'Clientes'
     within("tr#customer-#{customer.id}") do
-      find('.ls-ico-pencil').click
+      find("a[href='#{edit_customer_path(customer)}']").click
     end
     fill_in 'Nome', with: 'George R R Martin'
     click_on 'Salvar'
@@ -44,7 +45,7 @@ feature 'User edit customer' do
     # Act
     visit customers_path
     within("tr#customer-#{customer.id}") do
-      find('.ls-ico-zoomin').click
+      find("a[href='#{customer_path(customer)}'][data-method='get']").click
     end
     click_on 'Editar'
     fill_in 'Nome', with: ''
