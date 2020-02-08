@@ -4,31 +4,35 @@
     <title>QsdSales</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css">
     <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
     <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png">
+
   </head>
 
   <body>
-    <nav>
-      <% if user_signed_in? %>
-        <span>Olá, <%= current_user.email %></span>
-        <% if current_user.admin? %>
-          <%= link_to 'Usuários', users_path %>
-        <% end %>
-        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Entrar', new_user_session_path %>
-      <% end %>
-      <%= link_to 'Clientes', customers_path %>
-    </nav>
+    <%= render '/layouts/header' %>
 
-    <p class="notice etc-pdn"><%= notice %></p>
-    <p class="alert etc-pdn"><%= alert %></p>
+    <main class="ls-main">
+      <div class="container-fluid">
+        <nav>
+          <%= link_to 'Clientes', customers_path %>
+          <%= link_to 'Pedidos', orders_path  %>
+        </nav>
+        <div class="alerts">
+          <% if notice %>
+            <div class="ls-alert-success" role="alert"> <%= notice %> </div>
+          <% end %>
+          <% if alert %>
+            <div class="ls-alert-warning" role="alert"> <%= alert %> </div>
+          <% end %>
+        </div>
+        <%= yield %>
+      </div>
+    </main>
 
-    <div class="container">
-      <%= yield %>
-    </div>
 
     <!-- We recommended use jQuery 1.10 or up -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>

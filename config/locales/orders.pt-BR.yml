@@ -1,0 +1,22 @@
+---
+pt-BR:
+  orders:
+    create:
+      success: 'Pedido criado com sucesso'
+    update:
+      success: 'Pedido editado com sucesso'
+  activerecord:
+    models:
+      order:
+        one: 'Pedido'
+        other: 'Pedidos'
+    attributes:
+      order:
+        code: 'Código'
+        date_order: 'Data do pedido'
+        status: 'Status'
+        user: 'Usuário'
+        customer: 'Cliente'
+        product_id: 'Produtos'
+        plan_id: 'Planos'
+        price_id: 'Preco'
