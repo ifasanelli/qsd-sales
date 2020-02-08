@@ -1,33 +1,43 @@
 require 'rails_helper'
 
 feature 'User create order' do
-  xscenario 'Successfully' do
+  scenario 'Successfully' do
     user = create(:user)
+    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     customer = create(:customer)
-
     login_as user, scope: :user
-    visit root_path
-    click_on 'Pedidos'
-    click_on 'Novo pedido'
 
-    select "#{customer.name} - #{customer.document}"
-    select 'Hospedagem Linux', from: 'Produto'
+    visit root_path
+    click_on 'Clientes'
+    click_on customer.name
+    click_on 'Novo Pedido'
+    select 'Hospedagem', from: 'Produto'
+    select 'Linux', from: 'Planos'
+    select "#{price.name} - #{price.valor}", from: 'Período'
     click_on 'Efetivar'
 
     expect(page).to have_content(user.id)
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.document)
-    expect(page).to have_content('Hospedagem Linux')
+    expect(page).to have_content('Hospedagem')
+    expect(page).to have_content('Linux')
+    expect(page).to have_content("#{price.name} - #{price.valor}")
   end
 
-  xscenario 'When have no customer or product' do
+  scenario 'Failed' do
     user = create(:user)
-
+    Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    customer = create(:customer)
     login_as user, scope: :user
-    visit new_order_path
+
+    visit root_path
+    click_on 'Clientes'
+    click_on customer.name
+    click_on 'Novo Pedido'
+    select 'Hospedagem', from: 'Produto'
     click_on 'Efetivar'
 
-    expect(page).to have_content('Customer must exist')
-    expect(page).to have_content('Produto não pode ficar em branco')
+    expect(page).to have_content('Preco não pode ficar em branco')
+    expect(page).to have_content('Planos não pode ficar em branco')
   end
 end

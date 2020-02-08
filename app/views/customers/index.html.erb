@@ -10,11 +10,7 @@
 <% if @customers.empty? && params[:q] %>
   <p>Cliente não cadastrado</p>
 <% else %>
-
-<% end %>
-<%= link_to 'Registrar Novo', new_customer_path %>
-
-<table class="ls-table">
+  <table class="ls-table">
   <% @customers.each do |customer| %>
     <thead>
       <tr>
@@ -30,3 +26,7 @@
     </tbody>
   <% end %>
 </table>
+<% end %>
+<%= link_to 'Registrar Novo', new_customer_path %>
+
+
