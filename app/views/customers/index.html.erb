@@ -1,4 +1,4 @@
-<h1><%= t('activerecord.models.customer.other') %></h1>
+<h1><%= Customer.model_name.human(count: 2) %></h1>
 <section>
   <%= form_tag search_customers_path, method: 'get' do %>
     <%= label_tag :q, 'Pesquisar' %>
@@ -23,8 +23,8 @@
   <% @customers.each do |customer| %>
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Email</th>
+        <th><%= Customer.human_attribute_name(:name) %></th>
+        <th><%= Customer.human_attribute_name(:name) %></th>
       </tr>
     </thead>
     <tbody>

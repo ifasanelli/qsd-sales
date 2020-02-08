@@ -1,4 +1,4 @@
-<h1>Cadastrar <%= t('activerecord.models.order.one') %></h1>
+<h1>Cadastrar <%= Order.model_name.human(count: 1) %></h1>
 
   <% if @order.errors.any? %>
   <% @order.errors.full_messages.each do |message| %>

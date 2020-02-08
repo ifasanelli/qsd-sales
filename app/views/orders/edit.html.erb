@@ -1,4 +1,4 @@
-<h1>Editar <%= t('activerecord.models.order.one') %></h1>
+<h1>Editar <%= Order.model_name.human(count: 1) %>/h1>
 <%= form_with model: @order, local: true do |form| %>
   <p>
   <%= form.label :customer_id %>
