@@ -10,11 +10,6 @@
 <% if @customers.empty? && params[:q] %>
   <p>Cliente não cadastrado</p>
 <% else %>
-<% @customers.each do |customer| %>
-  <%= customer.document %>
-  <%=  customer.name %>
-  <%= link_to 'Novo Pedido', new_customer_order_path(customer) %>
-<% end %>
 
 <% end %>
 <%= link_to 'Registrar Novo', new_customer_path %>
