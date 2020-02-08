@@ -2,8 +2,10 @@ require 'rails_helper'
 
 feature 'User create costumer' do
   scenario 'Successfully' do
-    # Act
+    user = create(:user)
+    login_as(user, scope: :user)
     visit root_path
+    # Act
     click_on 'Clientes'
     click_on 'Registrar Novo'
     fill_in 'Nome', with: 'Douglas Adams'

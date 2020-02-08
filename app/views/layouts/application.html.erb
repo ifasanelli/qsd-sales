@@ -25,7 +25,6 @@
             <% if current_user.admin? %>
               <%= link_to 'Usuários', users_path %>
             <% end %>
-            <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
           <% else %>
             <%= link_to 'Entrar', new_user_session_path %>
           <% end %>

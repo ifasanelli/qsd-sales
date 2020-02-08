@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User delete customer' do
+feature 'User view customer' do
   scenario 'Successfully' do
     # Arrange
     customer = create(:customer)
@@ -8,14 +8,14 @@ feature 'User delete customer' do
                                        email: 'edgar@gmail.com',
                                        document: '455.725.668-01',
                                        phone: '(12) 98216-2277')
-    # Act
+    user = create(:user)
+    login_as(user, scope: :user)
     visit root_path
+    # Act
     click_on 'Clientes'
-    click_on customer.name.to_s
-    click_on 'Apagar'
     # Assert
-    expect(current_path).to eq(customers_path)
-    expect(page).not_to have_content(customer.name)
+    expect(page).to have_content(customer.name)
+    expect(page).to have_content(customer.email)
     expect(page).to have_content(other_customer.name)
   end
 end

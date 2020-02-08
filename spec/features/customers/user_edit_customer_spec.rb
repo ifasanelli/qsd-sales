@@ -4,8 +4,10 @@ feature 'User edit customer' do
   scenario 'successfully' do
     # Arrange
     customer = create(:customer)
-    # Act
+    user = create(:user)
+    login_as(user, scope: :user)
     visit root_path
+    # Act
     click_on 'Clientes'
     click_on customer.name.to_s
     click_on 'Editar'

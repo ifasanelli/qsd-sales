@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit update]
+  before_action :load_user, only: %i[edit update]
+
   def index
     @users = User.all
   end
@@ -7,16 +8,17 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    @user.update(user_params)
+    @user.update!(user_params)
     redirect_to users_path
   end
 
   private
-  def find_user
+
+  def load_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :role)
+    params.require(:user).permit(:email, :role)
   end
 end
