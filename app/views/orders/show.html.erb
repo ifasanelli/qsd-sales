@@ -4,6 +4,7 @@
 <%= @product.name %>
 <%= @plan.name %>
 <%= @price.expose %>
+<%= "Preço Total: R$ #{@order.final_price}" %>
 <%= link_to 'Alterar', edit_order_path(@order) %>
 
 <div class="ls-title-3">Pedido: <%= @order.code %></div>

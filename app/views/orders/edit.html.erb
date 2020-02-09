@@ -13,5 +13,8 @@
   <%= form.label :price_id, 'Período' %>
   <%= form.collection_select :price_id, @prices, :id, :expose, prompt: true %>
 
+  <%= form.label :coupon_name, 'Cupom' %>
+  <%= form.text_field :coupon_name %>
+  
   <p><%= form.submit 'Efetivar' %></p>
 <% end %>

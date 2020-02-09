@@ -16,7 +16,7 @@ feature 'User create order with coupon' do
     select 'Hospedagem', from: 'Produto'
     select 'Linux', from: 'Planos'
     select "#{price.name} - #{price.valor}", from: 'Período'
-    fill_in 'Coupon',	with: 'NATLOCA01'
+    fill_in 'Cupom', with: coupon.name
     click_on 'Efetivar'
     # Assert
     expect(page).to have_content(user.id)
@@ -25,6 +25,6 @@ feature 'User create order with coupon' do
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
     expect(page).to have_content("#{price.name} - #{price.valor}")
-    expect(page).to have_content("Preço Total: #{pricet.float_value * (1 - coupon.discount)}")
+    expect(page).to have_content('Preço Total: R$ 21.0')
   end
 end
