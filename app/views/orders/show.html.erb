@@ -1,3 +1,11 @@
+<%= @order.code%>
+<%= @order.user.id %>
+<%= @order.customer.identification %>
+<%= @product.name %>
+<%= @plan.name %>
+<%= @price.expose %>
+<%= link_to 'Alterar', edit_order_path(@order) %>
+
 <div class="ls-title-3">Pedido: <%= @order.code %></div>
 <span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
 <% if @order.cancelled? %>
