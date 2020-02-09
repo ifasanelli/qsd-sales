@@ -1,4 +1,7 @@
 <h1>Clientes</h1>
+
+<%= link_to 'Registrar Novo', new_customer_path %>
+
 <section>
   <%= form_tag search_customers_path, method: 'get' do %>
     <%= label_tag :q, 'Pesquisar' %>
@@ -10,28 +13,24 @@
 <% if @customers.empty? && params[:q] %>
   <p>Cliente não cadastrado</p>
 <% else %>
-<% @customers.each do |customer| %>
-  <%= customer.document %>
-  <%=  customer.name %>
-  <%= link_to 'Novo Pedido', new_customer_order_path(customer) %>
-<% end %>
-
-<% end %>
-<%= link_to 'Registrar Novo', new_customer_path %>
-
 <table class="ls-table">
-  <% @customers.each do |customer| %>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
       <tr>
         <td><%= link_to customer.name, customer_path(customer) %></td>
+        <td><%= customer.document %></td>
         <td><%= customer.email %></td>
+        <td><%= link_to 'Novo Pedido', new_customer_order_path(customer) %></td>
       </tr>
-    </tbody>
-  <% end %>
+    <% end %>
+  </tbody>
 </table>
+<% end %>
