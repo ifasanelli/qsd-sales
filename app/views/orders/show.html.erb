@@ -1,23 +1,44 @@
-<%= @order.code%>
-<%= @order.user.id %>
-<%= @order.customer.identification %>
-<%= @product.name %>
-<%= @plan.name %>
-<%= @price.expose %>
-<%= link_to 'Alterar', edit_order_path(@order) %>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Usuário</th>
+      <th>Cliente</th>
+      <th>Produto</th>
+      <th>Plano</th>
+      <th>Preço</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if current_user.admin? || @order.user == current_user %>
+      <tr>
+        <td><%= @order.code%></td>
+        <td><%= @order.user.email %></td>
+        <td><%= @order.customer.identification %></td>
+        <td><%= @product.name %></td>
+        <td><%= @plan.name %></td>
+        <td><%= @price.expose %></td>
+        <td><%= link_to 'Alterar', edit_order_path(@order) %></td>
+      </tr>
+    <% else %>
+      <h3>Você não tem permissão para acessar esta página</h3>
+    <% end %>
+  </tbody>
+</table>
 
-<div class="ls-title-3">Pedido: <%= @order.code %></div>
-<span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
-<% if @order.cancelled? %>
-  <div class="reason">
-    <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3> 
-    <div class="why"><%= @order.cancellation_reason %></div>
-  </div>
-<% end %>
-<div class="button">
-  <% if @order.status == 'open' %>
-    <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn-primary-danger ls-ico-remove"  %>
+<% if current_user.admin? || @order.user == current_user %>
+  <div class="ls-title-3">Pedido: <%= @order.code %></div>
+  <span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
+  <% if @order.cancelled? %>
+    <div class="reason">
+      <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3>
+      <div class="why"><%= @order.cancellation_reason %></div>
+    </div>
   <% end %>
-</div>
-
-<hr>
+    <div class="button">
+      <% if @order.status == 'open' %>
+        <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn-primary-danger ls-ico-remove"  %>
+      <% end %>
+    </div>
+<% end %>

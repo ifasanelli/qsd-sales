@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   def index
     @orders = Order.all
   end
@@ -25,6 +26,7 @@ class OrdersController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @order = @customer.orders.new(order_params)
     @product = Product.find(@order.product_id)
+    @order.code = SecureRandom.hex(6)
     @order.user = current_user
     return redirect_to @order if @order.save
 

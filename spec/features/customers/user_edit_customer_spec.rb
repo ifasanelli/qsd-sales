@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'User edit customer' do
   scenario 'successfully' do
     # Arrange
-    customer = create(:customer)
-    user = create(:user)
+    user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
     login_as(user, scope: :user)
     visit root_path
     # Act
@@ -22,7 +22,9 @@ feature 'User edit customer' do
 
   scenario 'failed' do
     # Arrange
-    customer = create(:customer)
+    user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
+    login_as(user, scope: :user)
     # Act
     visit customers_path
     click_on customer.name.to_s

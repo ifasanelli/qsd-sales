@@ -2,9 +2,10 @@ require 'rails_helper'
 
 feature 'Admin cancel order' do
   scenario 'successfully' do
-    user = create(:user)
-    customer = create(:customer)
+    user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
     order = create(:order, user: user, customer: customer)
+    login_as(user, scope: :user)
 
     visit order_path(order)
     # click_on 'Pedidos'
@@ -22,9 +23,10 @@ feature 'Admin cancel order' do
   end
 
   scenario 'and cancellation reason should not be empty' do
-    user = create(:user)
-    customer = create(:customer)
+    user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
     order = create(:order, user: user, customer: customer)
+    login_as(user, scope: :user)
 
     visit order_path(order)
     click_on 'Cancelar'

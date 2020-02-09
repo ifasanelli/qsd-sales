@@ -10,28 +10,32 @@
 <% if @customers.empty? && params[:q] %>
   <p>Cliente não cadastrado</p>
 <% else %>
-<% @customers.each do |customer| %>
-  <%= customer.document %>
-  <%=  customer.name %>
-  <%= link_to 'Novo Pedido', new_customer_order_path(customer) %>
+    <table class="ls-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Email</th>
+          <th>Usuário</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <% if current_user.admin? || customer.user == current_user %>
+            <tr>
+              <td><%= link_to customer.name, customer_path(customer) %></td>
+              <td><%= customer.document %></td>
+              <td><%= customer.email %></td>
+              <td><%= customer.user.email %></td>
+              <td><%= link_to 'Novo Pedido', new_customer_order_path(customer) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
 <% end %>
 
-<% end %>
 <%= link_to 'Registrar Novo', new_customer_path %>
 
-<table class="ls-table">
-  <% @customers.each do |customer| %>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= link_to customer.name, customer_path(customer) %></td>
-        <td><%= customer.email %></td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
+

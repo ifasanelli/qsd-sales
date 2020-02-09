@@ -24,9 +24,12 @@ feature 'User create costumer' do
   end
 
   scenario 'Duplicated fields' do
+    user = create(:user, email: 'teste@email.com')
     create(:customer, document: '198.725.668-02',
                       phone: '(11) 96782-4553',
-                      email: 'douglas@gmail.com')
+                      email: 'douglas@gmail.com',
+                      user: user)
+    login_as(user, scope: :user)
     # Act
     visit customers_path
     click_on 'Registrar Novo'

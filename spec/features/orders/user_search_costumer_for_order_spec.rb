@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'User search costumer for order' do
   scenario 'sucessfully' do
     price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
-    user = create(:user)
-    customer = create(:customer)
+    user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
 
     login_as user, scope: :user
     visit root_path

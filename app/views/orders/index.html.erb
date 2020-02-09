@@ -1,6 +1,22 @@
-<% @orders.each do |order| %>
-  <%= link_to order.code, order%>
-  <%= order.user.id %>
-  <%= order.customer.identification %>
-  <%= order.product_id %>
-<%end%>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Usuário</th>
+      <th>Cliente</th>
+      <th>Produto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <% if current_user.admin? || order.user == current_user %>
+        <tr>
+          <td><%= link_to order.code, order%></td>
+          <td><%= order.user.email %></td>
+          <td><%= order.customer.identification %></td>
+          <td><%= order.product_id %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

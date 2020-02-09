@@ -6,5 +6,6 @@ FactoryBot.define do
     email { 'douglas@gmail.com' }
     phone { '(11) 96782-4553' }
     birth_date { '1997-01-28' }
+    user
   end
 end

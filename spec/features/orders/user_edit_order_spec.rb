@@ -4,7 +4,8 @@ feature 'User edit any order' do
   scenario 'Sucessfully' do
     price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     user = create(:user, email: 'xaviervi@hotmail.com')
-    order = create(:order)
+    customer = create(:customer, user: user)
+    order = create(:order, customer: customer, user: user)
 
     login_as user, scope: :user
     visit root_path

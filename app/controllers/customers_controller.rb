@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_customer, only: %i[show edit update destroy]
 
   def index
@@ -18,6 +19,7 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
+    @customer.user = current_user
     if @customer.save
       redirect_to @customer, notice: 'Cliente cadastrado com sucesso!'
     else
