@@ -3,7 +3,6 @@ require 'rails_helper'
 feature 'User edit order with coupon' do
   scenario 'Successfully' do
     # Arrange
-    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     order = create(:order)
     user = create(:user, email: 'testando@yahoo.com')
     # Act
