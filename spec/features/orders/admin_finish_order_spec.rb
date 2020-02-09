@@ -31,6 +31,5 @@ feature 'User finish order' do
     expect(page).to have_content('Cupom inválido')
     expect(page).to have_content(order.code.to_s)
     expect(page).to have_content('Status: Aberto')
-
   end
 end
