@@ -1,11 +1,30 @@
+<h1><%= Customer.model_name.human(count: 2) %></h1>
+<section>
+  <%= form_tag search_customers_path, method: 'get' do %>
+    <%= label_tag :q, 'Pesquisar' %>
+    <%= text_field_tag :q %>
+    <%= submit_tag 'Buscar'%>
+  <% end %>
+</section>
+
+<% if @customers.empty? && params[:q] %>
+  <p>Cliente não cadastrado</p>
+<% else %>
+<% @customers.each do |customer| %>
+  <%= customer.document %>
+  <%=  customer.name %>
+  <%= link_to 'Novo Pedido', new_customer_order_path(customer) %>
+<% end %>
+
+<% end %>
 <%= link_to 'Registrar Novo', new_customer_path, class: 'ls-btn-primary button' %>
 
 <table class="ls-table">
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Ações</th>
+        <th><%= Customer.human_attribute_name(:name) %></th>
+        <th><%= Customer.human_attribute_name(:email) %></th>
+        <th><%= Customer.human_attribute_name(:actions) %></th>
       </tr>
     </thead>
     <tbody>

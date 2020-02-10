@@ -5,4 +5,9 @@ class Customer < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :phone, presence: true, uniqueness: true
   validates :birth_date, presence: true
+  has_many :orders, dependent: :restrict_with_exception
+
+  def identification
+    "#{name} - #{document}"
+  end
 end

@@ -1,3 +1,17 @@
+<strong><%= Order.human_attribute_name(:code) %>:</strong>
+<%= @order.code%>
+<strong><%= Order.human_attribute_name(:user_id) %>:</strong>
+<%= @order.user.id %>
+<strong><%= Order.human_attribute_name(:customer) %>:</strong>
+<%= @order.customer.identification %>
+<strong><%= Order.human_attribute_name(:product) %>:</strong>
+<%= @product.name %>
+<strong><%= Order.human_attribute_name(:plan) %>:</strong>
+<%= @plan.name %>
+<strong><%= Order.human_attribute_name(:price) %>:</strong>
+<%= @price.expose %>
+<%= link_to 'Alterar', edit_order_path(@order) %>
+
 <div class="ls-title-3">Pedido: <%= @order.code %></div>
 <span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
 <% if @order.cancelled? %>

@@ -42,8 +42,8 @@
       <nav class="ls-menu">
         <ul>
           <li>
-            <a href="/customers" class="ls-ico-user" title="Clientes">Clientes</a>
-            <a href="#" class="ls-ico-text" title="Pedidos">Pedidos</a>
+            <%= link_to 'Clientes', customers_path, class: "ls-ico-user" %>
+            <%= link_to 'Pedidos', orders_path, class: "ls-ico-text" %>
           </li>
         </ul>
       </nav>

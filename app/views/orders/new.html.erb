@@ -1,0 +1,21 @@
+<h1>Cadastrar <%= Order.model_name.human(count: 1) %></h1>
+
+  <% if @order.errors.any? %>
+  <% @order.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+<%= form_with model: [@customer, @order], local: true do |form| %>
+
+  <%= form.label :product_id %>
+  <%= form.collection_select :product_id, @products, :id, :name, prompt: true %>
+
+  <%= form.label :plan_id %>
+  <%= form.collection_select :plan_id, @plans, :id, :name, prompt: true %>
+
+  <%= form.label :price_id %>
+  <%= form.collection_select :price_id, @prices, :id, :expose, prompt: true %>
+  
+  <p><%= form.submit 'Efetivar' %></p>
+<% end %>
