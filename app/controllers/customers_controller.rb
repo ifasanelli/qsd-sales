@@ -25,7 +25,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     @customer.user = current_user
     if @customer.save
-      redirect_to @customer, notice: 'Cliente cadastrado com sucesso!'
+      redirect_to @customer, notice: t('.success')
     else
       render :new
     end
@@ -35,7 +35,7 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      redirect_to @customer, notice: 'Cliente editado com sucesso!'
+      redirect_to @customer, notice: t('.success')
     else
       render :edit
     end
@@ -54,8 +54,8 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, :address, :document, :email, :phone,
-                                     :birth_date)
+    params.require(:customer).permit(:name, :address, :document, :email,
+                                     :phone, :birth_date)
   end
 
   def find_customer

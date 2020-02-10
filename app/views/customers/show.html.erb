@@ -1,8 +1,9 @@
-<h2>Cliente</h2>
+<h2 class="title"><%= Customer.model_name.human(count: 1) %></h2>
 
 <table class="ls-table">
   <thead>
     <tr>
+<<<<<<< HEAD
       <th>Nome</th>
       <th>Endereço</th>
       <th>CPF</th>
@@ -11,6 +12,14 @@
       <th>Data de Nascimento</th>
       <th>Usuário</th>
       <th></th>
+=======
+      <th><%= Customer.human_attribute_name(:name) %></th>
+      <th><%= Customer.human_attribute_name(:address) %></th>
+      <th><%= Customer.human_attribute_name(:document) %></th>
+      <th><%= Customer.human_attribute_name(:email) %></th>
+      <th><%= Customer.human_attribute_name(:phone) %></th>
+      <th><%= Customer.human_attribute_name(:birth_date) %></th>
+>>>>>>> 24f653dc2fc07fa365ea95bae1d3b06bda3dddc4
     </tr>
   </thead>
   <tbody>
@@ -29,8 +38,7 @@
   </tbody>
 </table>
 
-
-<%= link_to 'Editar', edit_customer_path %>
-
-<%= link_to 'Apagar', customer_path(@customer), method: :delete,
-    data: { confirm: "Tem certeza de que deseja deletar #{@customer.name}"} %>
+<%= link_to 'Editar', edit_customer_path(@customer), class: "ls-btn blue-theme" %>
+<%= link_to 'Apagar', customer_path(@customer), method: :delete, class: "ls-btn red-delete",
+data: { confirm: "Tem certeza de que deseja deletar #{@customer.name}?"} %>
+<%= link_to 'Voltar', customers_path, class:"ls-btn" %>

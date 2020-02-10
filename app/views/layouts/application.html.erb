@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="ls-theme-light-blue">
   <head>
-    <title>QsdSales</title>
+    <title>Sistema de Vendas</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,6 +17,7 @@
 
     <main class="ls-main">
       <div class="container-fluid">
+<<<<<<< HEAD
         <nav>
           <% if user_signed_in? %>
             <span>Olá, <%= current_user.email %></span>
@@ -29,6 +30,8 @@
             <%= link_to 'Entrar', new_user_session_path %>
           <% end %>
         </nav>
+=======
+>>>>>>> 24f653dc2fc07fa365ea95bae1d3b06bda3dddc4
         <div class="alerts">
           <% if notice %>
             <div class="ls-alert-success" role="alert"> <%= notice %> </div>

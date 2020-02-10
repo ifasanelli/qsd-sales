@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <table class="ls-table">
   <thead>
     <tr>
@@ -35,6 +36,33 @@
       <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3>
       <div class="why"><%= @order.cancellation_reason %></div>
     </div>
+=======
+<strong><%= Order.human_attribute_name(:code) %>:</strong>
+<%= @order.code%>
+<strong><%= Order.human_attribute_name(:user_id) %>:</strong>
+<%= @order.user.id %>
+<strong><%= Order.human_attribute_name(:customer) %>:</strong>
+<%= @order.customer.identification %>
+<strong><%= Order.human_attribute_name(:product) %>:</strong>
+<%= @product.name %>
+<strong><%= Order.human_attribute_name(:plan) %>:</strong>
+<%= @plan.name %>
+<strong><%= Order.human_attribute_name(:price) %>:</strong>
+<%= @price.expose %>
+<%= link_to 'Alterar', edit_order_path(@order) %>
+
+<div class="ls-title-3">Pedido: <%= @order.code %></div>
+<span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
+<% if @order.cancelled? %>
+  <div class="reason">
+    <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3> 
+    <div class="why"><%= @order.cancellation_reason %></div>
+  </div>
+<% end %>
+<div class="button">
+  <% if @order.status == 'open' %>
+    <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn red-delete" %>
+>>>>>>> 24f653dc2fc07fa365ea95bae1d3b06bda3dddc4
   <% end %>
     <div class="button">
       <% if @order.status == 'open' %>

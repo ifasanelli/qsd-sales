@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
     @product = Product.find(@order.product_id)
     @order.code = SecureRandom.hex(6)
     @order.user = current_user
-    return redirect_to @order if @order.save
+    return redirect_to @order, notice: t('.success') if @order.save
 
     load_customers_and_products
     render :new
