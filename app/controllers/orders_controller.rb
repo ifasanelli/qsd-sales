@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :find_customer, only: %i[new create]
   def index
     @orders = Order.all
   end
@@ -11,13 +12,11 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @customer = Customer.find(params[:customer_id])
     @order = Order.new
     load_customers_and_products
   end
 
   def create
-    @customer = Customer.find(params[:customer_id])
     @order = @customer.orders.new(order_params)
     @order.user = current_user
     if order_params[:coupon_name].present?
@@ -75,5 +74,9 @@ class OrdersController < ApplicationController
     price = Price.find(order.price_id)
     coupon = Coupon.find(order.coupon_name)
     @final_price = price.float_value * (1 - coupon.discount)
+  end
+
+  def find_customer
+    @customer = Customer.find(params[:customer_id])
   end
 end
