@@ -15,7 +15,7 @@ feature 'User edit any order' do
     select "#{order.customer.name} - #{order.customer.document}"
     select 'Hospedagem', from: 'Produtos'
     select 'Windows', from: 'Planos'
-    select "#{price.name} - #{price.valor}", from: 'Período'
+    select "#{price.name} - #{price.valor}", from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)

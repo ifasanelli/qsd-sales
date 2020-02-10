@@ -1,14 +1,14 @@
-<h2>Cliente</h2>
+<h2><%= Customer.model_name.human(count: 1) %></h2>
 
 <table class="ls-table">
   <thead>
     <tr>
-      <th>Nome</th>
-      <th>Endereço</th>
-      <th>CPF</th>
-      <th>Email</th>
-      <th>Telefone</th>
-      <th>Data de Nascimento</th>
+      <th><%= Customer.human_attribute_name(:name) %></th>
+      <th><%= Customer.human_attribute_name(:address) %></th>
+      <th><%= Customer.human_attribute_name(:document) %></th>
+      <th><%= Customer.human_attribute_name(:email) %></th>
+      <th><%= Customer.human_attribute_name(:phone) %></th>
+      <th><%= Customer.human_attribute_name(:birth_date) %></th>
     </tr>
   </thead>
   <tbody>
