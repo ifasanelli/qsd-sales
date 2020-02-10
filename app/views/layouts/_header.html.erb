@@ -4,23 +4,17 @@
     <div class="ls-notification-topbar">
 
         <!-- Dropdown com detalhes da conta de usuário -->
-      <% if user_signed_in? %>
-        <div data-ls-module="dropdown" class="ls-dropdown ls-user-account" id="dropdw">
-          <a href="#" class="ls-ico-user">
-            <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
-            <span class="ls-name">Teste</span>
-          </a>
+    <div data-ls-module="dropdown" class="ls-dropdown ls-user-account" id="dropdw">
+      <a href="#" class="ls-ico-user">
+        <span class="ls-name">Usuário</span>
+      </a>
 
-          <nav class="ls-dropdown-nav ls-user-menu">
-            <ul>
-              <li><a href="#">Meus dados</a></li>
-              <li>
-                <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      <% end %>
+      <nav class="ls-dropdown-nav ls-user-menu">
+        <ul>
+          <li><a href="#">Meus dados</a></li>
+          <li>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+        </li>
 
     </div>
 
@@ -32,9 +26,8 @@
 
   <!-- Nome do produto/marca com sidebar -->
     <h1 class="ls-brand-name">
-      <a href="home" class="ls-ico-earth">
-        <small>Sistema de gestão de vendas da Locaweb</small>
-        Locaweb Sales
+      <a href="/" class="ls-ico-cart">
+        Vendas
       </a>
     </h1>
 </div>
@@ -45,15 +38,9 @@
 
       <nav class="ls-menu">
         <ul>
-           <li>
-            <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
-            <ul>
-              <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-domain">Domínios da Revenda</a></li>
-              <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-email">E-mail de Remetente</a></li>
-              <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-aspect">Aparência</a></li>
-              <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-answer">Atendimento</a></li>
-              <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-api">Chave de acesso para API</a></li>
-            </ul>
+          <li>
+            <%= link_to 'Clientes', customers_path, class: "ls-ico-user" %>
+            <%= link_to 'Pedidos', orders_path, class: "ls-ico-text" %>
           </li>
         </ul>
       </nav>
