@@ -13,7 +13,6 @@ feature 'User create order' do
 
     visit root_path
     click_on 'Clientes'
-    click_on customer.name
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
     select 'Linux', from: 'Planos'
@@ -31,7 +30,7 @@ feature 'User create order' do
   scenario 'Failed' do
     user = create(:user)
     Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
-    customer = create(:customer)
+    create(:customer)
     login_as user, scope: :user
 
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
@@ -41,7 +40,6 @@ feature 'User create order' do
 
     visit root_path
     click_on 'Clientes'
-    click_on customer.name
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
     click_on 'Efetivar'
