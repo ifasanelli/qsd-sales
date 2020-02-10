@@ -8,8 +8,7 @@ class CustomersController < ApplicationController
   end
 
   def search
-    @customers = Customer.where('document LIKE ?', "%#{params[:q]}%")
-    redirect_to new_customer_path if @customers.empty? && params[:q]
+    (redirect_to new_customer_path) && return if @customers.empty? && params[:q]
     if customer_belongs_to_another
       flash[:alert] = 'Este cliente pertence a outro vendedor'
     end
@@ -50,6 +49,7 @@ class CustomersController < ApplicationController
   private
 
   def customer_belongs_to_another
+    @customers = Customer.where('document LIKE ?', "%#{params[:q]}%")
     @customers.count == 1 && @customers.first.user != current_user
   end
 
