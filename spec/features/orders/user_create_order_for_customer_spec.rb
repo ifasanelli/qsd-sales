@@ -20,14 +20,23 @@ feature 'User create order' do
     expect(page).to have_content('Hospedagem Linux')
   end
 
-  xscenario 'When have no customer or product' do
+  xscenario 'When have no product, plan or period' do
     user = create(:user)
 
     login_as user, scope: :user
     visit new_order_path
     click_on 'Efetivar'
 
-    expect(page).to have_content('Customer must exist')
     expect(page).to have_content('Produto não pode ficar em branco')
+    expect(page).to have_content('Preco não pode ficar em branco')
+    expect(page).to have_content('Planos não pode ficar em branco')
+    expect(page).to have_content('Produtos')
+    expect(page).to have_content('Planos')
+    expect(page).to have_content('Período')
+    expect(page).to have_content('Hospedagem')
+    expect(page).to have_content('Cloud')
+    expect(page).to have_content('Windows')
+    expect(page).to have_content('Linux')
+    expect(current_path).to eq new_customer_path
   end
 end

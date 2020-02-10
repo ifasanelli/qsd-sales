@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_customer, only: %i[show edit update destroy]
+  before_action :customer_belongs_to_another, only: %i[search]
 
   def index
     @customers = Customer.all
@@ -8,6 +9,10 @@ class CustomersController < ApplicationController
 
   def search
     @customers = Customer.where('document LIKE ?', "%#{params[:q]}%")
+    redirect_to new_customer_path if @customers.empty? && params[:q]
+    if customer_belongs_to_another
+      flash[:alert] = 'Este cliente pertence a outro vendedor'
+    end
     render :index
   end
 
@@ -43,6 +48,10 @@ class CustomersController < ApplicationController
   end
 
   private
+
+  def customer_belongs_to_another
+    @customers.count == 1 && @customers.first.user != current_user
+  end
 
   def customer_params
     params.require(:customer).permit(:name, :address, :document, :email, :phone,

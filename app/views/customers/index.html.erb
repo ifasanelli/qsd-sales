@@ -1,4 +1,11 @@
 <h1>Clientes</h1>
+<div>
+  <%= link_to 'Registrar Novo', new_customer_path, class: 'ls-btn-primary' %>
+</div><br>
+
+
+<%= flash[:notice] %>
+
 <section>
   <%= form_tag search_customers_path, method: 'get' do %>
     <%= label_tag :q, 'Pesquisar' %>
@@ -7,42 +14,29 @@
   <% end %>
 </section>
 
-<% if @customers.empty? && params[:q] %>
-  <%= link_to '', new_customer_path, id:"btn-new" %>
-  <script>
-    function myFunction() {
-      document.getElementById("btn-new").click();
-    }
-    myFunction()
-  </script>
-<% else %>
-    <% if @customers.count == 1 && @customers.first.user != current_user %>
-      <p>Este cliente pertence a outro vendedor</p>
-    <% end %>
-    <table class="ls-table">
-      <thead>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Email</th>
+      <th>Usuário</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <% if current_user.admin? || customer.user == current_user %>
         <tr>
-          <th>Nome</th>
-          <th>CPF</th>
-          <th>Email</th>
-          <th>Usuário</th>
-          <th></th>
+          <td><%= link_to customer.name, customer_path(customer) %></td>
+          <td><%= customer.document %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.user.email %></td>
+          <td><%= link_to 'Novo Pedido', new_customer_order_path(customer) %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% @customers.each do |customer| %>
-          <% if current_user.admin? || customer.user == current_user %>
-            <tr>
-              <td><%= link_to customer.name, customer_path(customer) %></td>
-              <td><%= customer.document %></td>
-              <td><%= customer.email %></td>
-              <td><%= customer.user.email %></td>
-              <td><%= link_to 'Novo Pedido', new_customer_order_path(customer) %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-<% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to 'Registrar Novo', new_customer_path %>
+<%= link_to 'Voltar', root_path %>
