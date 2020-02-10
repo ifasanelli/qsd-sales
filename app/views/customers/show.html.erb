@@ -1,4 +1,4 @@
-<h2><%= Customer.model_name.human(count: 1) %></h2>
+<h2 class="title"><%= Customer.model_name.human(count: 1) %></h2>
 
 <table class="ls-table">
   <thead>
@@ -23,8 +23,7 @@
   </tbody>
 </table>
 
-
-<%= link_to 'Editar', edit_customer_path %>
-
-<%= link_to 'Apagar', customer_path(@customer), method: :delete,
-    data: { confirm: "Tem certeza de que deseja deletar #{@customer.name}"} %>
+<%= link_to 'Editar', edit_customer_path(@customer), class: "ls-btn blue-theme" %>
+<%= link_to 'Apagar', customer_path(@customer), method: :delete, class: "ls-btn red-delete",
+data: { confirm: "Tem certeza de que deseja deletar #{@customer.name}?"} %>
+<%= link_to 'Voltar', customers_path, class:"ls-btn" %>
