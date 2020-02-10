@@ -1,7 +1,5 @@
 <h1><%= Customer.model_name.human(count: 2) %></h1>
 
-<%= link_to 'Registrar Novo', new_customer_path %>
-
 <section>
   <%= form_tag search_customers_path, method: 'get' do %>
     <%= label_tag :q, 'Pesquisar' %>
@@ -12,13 +10,10 @@
 
 <% if @customers.empty? && params[:q] %>
   <p>Cliente não cadastrado</p>
-<<<<<<< HEAD
 <% else %>
-=======
-<% end %>
+
 <%= link_to 'Registrar Novo', new_customer_path, class: 'ls-btn-primary button' %>
 
->>>>>>> 24f653dc2fc07fa365ea95bae1d3b06bda3dddc4
 <table class="ls-table">
     <thead>
       <tr>

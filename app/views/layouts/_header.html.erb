@@ -4,6 +4,7 @@
     <div class="ls-notification-topbar">
 
         <!-- Dropdown com detalhes da conta de usuário -->
+    <% if user_signed_in? %>
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account" id="dropdw">
       <a href="#" class="ls-ico-user">
         <span class="ls-name">Usuário</span>
@@ -13,15 +14,25 @@
         <ul>
           <li><a href="#">Meus dados</a></li>
           <li>
+             
           <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-        </li>
+          </li>
+         </ul>
+      </nav>
+    </div>
+
+    <% else %>
+            <a href="#" class="ls-ico-user">
+              <%= link_to 'Entrar', new_user_session_path %>
+            </a>
+    <% end %>
 
     </div>
 
     <span class="ls-show-sidebar ls-ico-menu"></span>
 
   <a href= "/"  class="ls-go-next"><span class="ls-text">Voltar à lista de serviços</span></a>
-
+  
 
 
   <!-- Nome do produto/marca com sidebar -->
@@ -41,9 +52,11 @@
           <li>
             <%= link_to 'Clientes', customers_path, class: "ls-ico-user" %>
             <%= link_to 'Pedidos', orders_path, class: "ls-ico-text" %>
+            <%= link_to 'Usuários', users_path, class: "ls-ico-text" %>
           </li>
         </ul>
       </nav>
-  </div>
 
+
+  </div>
 </aside>

@@ -9,7 +9,7 @@ feature 'User log in' do
     within 'form' do
       fill_in 'E-mail', with: 'douglas@gmail.com'
       fill_in 'Senha', with: '12345678'
-      click_on 'Log in'
+      click_on 'Entrar'
     end
 
     expect(current_path).to eq(root_path)
