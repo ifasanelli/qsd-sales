@@ -1,4 +1,7 @@
 <h1><%= Customer.model_name.human(count: 2) %></h1>
+
+<%= link_to 'Registrar Novo', new_customer_path %>
+
 <section>
   <%= form_tag search_customers_path, method: 'get' do %>
     <%= label_tag :q, 'Pesquisar' %>
@@ -15,7 +18,9 @@
     <thead>
       <tr>
         <th><%= Customer.human_attribute_name(:name) %></th>
-        <th><%= Customer.human_attribute_name(:name) %></th>
+        <th><%= Customer.human_attribute_name(:document) %></th>
+        <th><%= Customer.human_attribute_name(:email) %></th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
