@@ -47,7 +47,7 @@ RSpec.describe Plan, type: :model do
 
       result = Plan.find(plan.id)
 
-      expect(result.id == result.id).to eq(true)
+      expect(plan.id == result.id).to eq(true)
     end
 
     it 'find not return result' do
