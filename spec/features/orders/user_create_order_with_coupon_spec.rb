@@ -5,7 +5,7 @@ feature 'User create order with coupon' do
     # Arrange
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     customer = create(:customer)
-    coupon = Coupon.new(name: 'NATLOCA01', discount: 0.3)
+    coupon = Coupon.new(name: 'NATLOCA01', discount: 21)
     user = create(:user)
     # Act
     login_as user, scope: :user

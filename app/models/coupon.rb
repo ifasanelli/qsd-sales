@@ -6,8 +6,8 @@ class Coupon
   end
 
   def self.all
-    [new(name: 'NATLOCA01', discount: 0.3),
-     new(name: 'NATLOCA02', discount: 0.3)]
+    [new(name: 'NATLOCA01', discount: 21),
+     new(name: 'NATLOCA02', discount: 21)]
   end
 
   def self.find(name)

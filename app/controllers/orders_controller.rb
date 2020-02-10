@@ -71,9 +71,8 @@ class OrdersController < ApplicationController
   end
 
   def calculate_discount(order)
-    price = Price.find(order.price_id)
     coupon = Coupon.find(order.coupon_name)
-    @final_price = price.float_value * (1 - coupon.discount)
+    @final_price = coupon.discount
   end
 
   def find_customer
