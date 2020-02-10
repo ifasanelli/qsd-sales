@@ -5,6 +5,8 @@ feature 'User search costumer for order' do
     price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     user = create(:user)
     customer = create(:customer)
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
 
     login_as user, scope: :user
     visit root_path
