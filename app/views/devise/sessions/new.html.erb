@@ -1,5 +1,5 @@
 <div class="signin">
-  <h2 class="title-signin">Log in</h2>
+  <h2 class="ls-title-intro">Log in</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="ls-label col-md-3 align-item" style="margin-top:2vw">
         <%= f.label :email, class: "sr-only"%>
@@ -10,7 +10,7 @@
         <%= f.label :password, class: "sr-only" %>
         <%= f.password_field :password, autocomplete: "current-password", placeholder: "Senha" %>
       </div>
-      <%= f.submit "Entrar", class: "ls-btn-primary align-item col-md-4" %>
+      <%= f.submit "Entrar", class: "ls-btn-primary align-item col-md-3" %>
       <div class="align-item remember-me">
         <% if devise_mapping.rememberable? %>
             <%= f.check_box :remember_me %>

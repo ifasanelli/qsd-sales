@@ -12,8 +12,8 @@ feature 'User search costumer for order' do
     fill_in 'Pesquisar', with: '198.725.668-02'
     click_on 'Buscar'
     click_on 'Novo Pedido'
-    select 'Hospedagem', from: 'Produtos'
-    select 'Linux', from: 'Planos'
+    select 'Hospedagem', from: 'Produto'
+    select 'Linux', from: 'Plano'
     select "#{price.name} - #{price.valor}", from: 'Preço'
     click_on 'Efetivar'
 
