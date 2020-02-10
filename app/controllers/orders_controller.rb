@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
     if order_params[:coupon_name].present?
       @order.final_price = calculate_discount(@order)
     end
-    return redirect_to @order if @order.save
+    return redirect_to @order, notice: t('.success') if @order.save
 
     load_customers_and_products
     render :new

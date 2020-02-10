@@ -1,7 +1,15 @@
+---
 pt-BR:
+  customers:
+    create:
+      success: 'Cliente cadastrado com sucesso!'
+    update:
+      success: 'Cliente editado com sucesso!'
   activerecord:
     models:
-      customer: 'Cliente'
+      customer:
+        one: 'Cliente'
+        other: 'Clientes'
     attributes:
       customer:
         address: 'Endereço'
@@ -9,3 +17,4 @@ pt-BR:
         phone: 'Telefone'
         birth_date: 'Data de nascimento'
         document: 'CPF'
+        email: 'E-mail'
