@@ -13,7 +13,7 @@ feature 'User create costumer' do
     fill_in 'CPF', with: '198.725.668-02'
     fill_in 'E-mail', with: 'douglas@gmail.com'
     fill_in 'Telefone', with: '(11) 96782-4553'
-    fill_in 'Data de Nascimento', with: '1997-01-28'
+    fill_in 'Data de nascimento', with: '1997-01-28'
     click_on 'Salvar'
     # Assert
     expect(page).to have_content('Douglas Adams')
@@ -38,14 +38,14 @@ feature 'User create costumer' do
     fill_in 'CPF', with: '198.725.668-02'
     fill_in 'E-mail', with: 'douglas@gmail.com'
     fill_in 'Telefone', with: '(11) 96782-4553'
-    fill_in 'Data de Nascimento', with: ''
+    fill_in 'Data de nascimento', with: ''
     click_on 'Salvar'
     # Assert
     expect(page).to have_content('Nome não pode ficar em branco')
     expect(page).to have_content('Data de nascimento não pode ficar em branco')
     expect(page).to have_content('Endereço não pode ficar em branco')
     expect(page).to have_content('CPF já está em uso')
-    expect(page).to have_content('Email já está em uso')
+    expect(page).to have_content('E-mail já está em uso')
     expect(page).to have_content('Telefone já está em uso')
   end
 end
