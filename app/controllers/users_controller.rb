@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :only_admin, only: %i[index edit update]
   before_action :load_user, only: %i[edit update]
 
   def index
@@ -21,5 +22,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :role)
+  end
+
+  def only_admin
+    redirect_to(root_url) unless current_user.admin?
   end
 end
