@@ -16,6 +16,9 @@
     myFunction()
   </script>
 <% else %>
+    <% if @customers.count == 1 && @customers.first.user != current_user %>
+      <p>Este cliente pertence a outro vendedor</p>
+    <% end %>
     <table class="ls-table">
       <thead>
         <tr>
