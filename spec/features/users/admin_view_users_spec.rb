@@ -13,8 +13,6 @@ feature 'Admin view users' do
     expect(page).to have_content('admin@teste.com')
     expect(page).to have_content('teste@teste.com')
     expect(page).to have_content('testando@testando.com')
-    expect(page).to have_content('admin')
-    expect(page).to have_content('seller')
   end
 
   scenario 'Seller should not see users' do
