@@ -42,7 +42,5 @@ feature 'User create costumer' do
     expect(page).to have_content('CPF já está em uso')
     expect(page).to have_content('E-mail já está em uso')
     expect(page).to have_content('Telefone já está em uso')
-    expect(page).to have_content('Novo Cliente')
-    expect(page).to have_content('Nome')
   end
 end

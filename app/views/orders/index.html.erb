@@ -1,5 +1,5 @@
 <% @orders.each do |order| %>
-  <%= link_to order.code, order%>
+  <%= link_to order.code, order_path(order)%>
   <%= order.user.id %>
   <%= order.customer.identification %>
   <%= order.product_id %>

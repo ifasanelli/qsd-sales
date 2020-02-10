@@ -11,7 +11,6 @@ feature 'User create order with coupon' do
     login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
-    click_on customer.name
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
     select 'Linux', from: 'Planos'

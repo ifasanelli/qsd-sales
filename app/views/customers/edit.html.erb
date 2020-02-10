@@ -1,6 +1,4 @@
-<h1>Editar <%= Customer.model_name.human(count: 1) %></h1>
-
-<%= link_to 'Voltar', customer_path(@customer) %>
+<h1 class="title">Editar <%= Customer.model_name.human(count: 1) %></h1>
 
 <% if @customer.errors.any? %>
   <% @customer.errors.full_messages.each do |message| %>
@@ -11,3 +9,5 @@
 <% end %>
 
 <%= render partial: 'form', locals: { customer: @customer } %>
+
+<%= link_to 'Voltar', customer_path(@customer) %>
