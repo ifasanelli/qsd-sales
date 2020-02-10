@@ -16,6 +16,7 @@ feature 'Admin view users' do
     expect(page).to have_content('admin')
     expect(page).to have_content('seller')
   end
+
   scenario 'Seller should not see users' do
     user = create(:user, email:'testando@testando.com')
     login_as(user, scope: :user)
