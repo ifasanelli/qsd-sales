@@ -18,7 +18,7 @@ feature 'User edit order with coupon' do
     expect(page).to have_content(order.customer.identification)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
-    expect(page).to have_content('1 Mes - R$: 10,00')
+    expect(page).to have_content('1 Mes - R$ 10,00')
     expect(page).to have_content('Preço Total: R$ 7.0')
   end
 end

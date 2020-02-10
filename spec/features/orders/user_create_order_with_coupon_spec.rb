@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User create order with coupon' do
   scenario 'Successfully' do
     # Arrange
-    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     customer = create(:customer)
     coupon = Coupon.new(name: 'NATLOCA01', discount: 0.3)
     user = create(:user)
@@ -15,7 +15,7 @@ feature 'User create order with coupon' do
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
     select 'Linux', from: 'Planos'
-    select "#{price.name} - #{price.valor}", from: 'Período'
+    select price.expose, from: 'Preço'
     fill_in 'Cupom', with: coupon.name
     click_on 'Efetivar'
     # Assert
@@ -24,7 +24,7 @@ feature 'User create order with coupon' do
     expect(page).to have_content(customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
-    expect(page).to have_content("#{price.name} - #{price.valor}")
+    expect(page).to have_content(price.expose)
     expect(page).to have_content('Preço Total: R$ 21.0')
   end
 end

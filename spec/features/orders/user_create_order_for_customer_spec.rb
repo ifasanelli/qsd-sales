@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User create order' do
   scenario 'Successfully' do
     user = create(:user)
-    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     customer = create(:customer)
     login_as user, scope: :user
 
@@ -13,7 +13,7 @@ feature 'User create order' do
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
     select 'Linux', from: 'Planos'
-    select "#{price.name} - #{price.valor}", from: 'Período'
+    select price.expose, from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(user.id)
@@ -21,7 +21,7 @@ feature 'User create order' do
     expect(page).to have_content(customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
-    expect(page).to have_content("#{price.name} - #{price.valor}")
+    expect(page).to have_content(price.expose)
   end
 
   scenario 'Failed' do
@@ -37,7 +37,7 @@ feature 'User create order' do
     select 'Hospedagem', from: 'Produto'
     click_on 'Efetivar'
 
-    expect(page).to have_content('Preco não pode ficar em branco')
+    expect(page).to have_content('Preço não pode ficar em branco')
     expect(page).to have_content('Planos não pode ficar em branco')
   end
 end
