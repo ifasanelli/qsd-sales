@@ -6,9 +6,9 @@ feature 'User finish order' do
     customer = create(:customer)
     order = create(:order, user: user, customer: customer)
 
-    visit order_path(order)
-    # click_on 'Pedidos'
-    # click_on "#{order.code}"
+    visit root_path
+    click_on 'Pedidos'
+    click_on order.code.to_s
     click_on 'Aprovar'
 
     expect(page).to have_content('Pedido aprovado com sucesso')
@@ -23,9 +23,9 @@ feature 'User finish order' do
     customer = create(:customer)
     order = create(:order, user: user, customer: customer, coupon: coupon.id)
 
-    visit order_path(order)
-    # click_on 'Pedidos'
-    # click_on "#{order.code}"
+    visit root_path
+    click_on 'Pedidos'
+    click_on order.code.to_s
     click_on 'Aprovar'
 
     expect(page).to have_content('Cupom inválido')

@@ -6,9 +6,9 @@ feature 'Admin cancel order' do
     customer = create(:customer)
     order = create(:order, user: user, customer: customer)
 
-    visit order_path(order)
-    # click_on 'Pedidos'
-    # click_on "#{order.code}"
+    visit root_path
+    click_on 'Pedidos'
+    click_on order.code.to_s
     click_on 'Cancelar'
     fill_in 'Motivo de cancelamento', with: 'Não podemos realizar o pedido'
     click_on 'Enviar'
