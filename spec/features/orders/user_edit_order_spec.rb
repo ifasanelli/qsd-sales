@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User edit any order' do
   scenario 'Sucessfully' do
-    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     user = create(:user, email: 'xaviervi@hotmail.com')
     customer = create(:customer, user: user)
     order = create(:order, customer: customer, user: user)
@@ -16,7 +16,7 @@ feature 'User edit any order' do
     select "#{order.customer.name} - #{order.customer.document}"
     select 'Hospedagem', from: 'Produtos'
     select 'Windows', from: 'Planos'
-    select "#{price.name} - #{price.valor}", from: 'Preço'
+    select price.expose, from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)
@@ -24,6 +24,6 @@ feature 'User edit any order' do
     expect(page).to have_content(order.customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Windows')
-    expect(page).to have_content("#{price.name} - #{price.valor}")
+    expect(page).to have_content(price.expose)
   end
 end

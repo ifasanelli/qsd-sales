@@ -9,8 +9,9 @@ feature 'User edit customer' do
     visit root_path
     # Act
     click_on 'Clientes'
-    click_on customer.name.to_s
-    click_on 'Editar'
+    within("tr#customer-#{customer.id}") do
+      find("a[href='#{edit_customer_path(customer)}']").click
+    end
     fill_in 'Nome', with: 'George R R Martin'
     click_on 'Salvar'
     # Assert
@@ -27,8 +28,9 @@ feature 'User edit customer' do
     login_as(user, scope: :user)
     # Act
     visit customers_path
-    click_on customer.name.to_s
-    click_on 'Editar'
+    within("tr#customer-#{customer.id}") do
+      find("a[href='#{edit_customer_path(customer)}']").click
+    end
     fill_in 'Nome', with: ''
     click_on 'Salvar'
     # Assert

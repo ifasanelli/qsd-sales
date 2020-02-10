@@ -10,6 +10,7 @@
 <%= @plan.name %>
 <strong><%= Order.human_attribute_name(:price) %>:</strong>
 <%= @price.expose %>
+<%= "Preço Total: R$ #{@order.final_price}" %>
 <%= link_to 'Alterar', edit_order_path(@order) %>
 
 <% if current_user.admin? || @order.user == current_user %>

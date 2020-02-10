@@ -4,10 +4,8 @@ feature 'User create costumer' do
   scenario 'Successfully' do
     user = create(:user)
     login_as(user, scope: :user)
-    visit root_path
+    visit new_customer_path
     # Act
-    click_on 'Clientes'
-    click_on 'Registrar Novo'
     fill_in 'Nome', with: 'Douglas Adams'
     fill_in 'Endereço', with: 'Restaurante no fim do Universo'
     fill_in 'CPF', with: '198.725.668-02'
@@ -31,8 +29,7 @@ feature 'User create costumer' do
                       user: user)
     login_as(user, scope: :user)
     # Act
-    visit customers_path
-    click_on 'Registrar Novo'
+    visit new_customer_path
     fill_in 'Nome', with: ''
     fill_in 'Endereço', with: ''
     fill_in 'CPF', with: '198.725.668-02'

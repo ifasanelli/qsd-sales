@@ -14,8 +14,9 @@ feature 'User delete customer' do
     visit root_path
     # Act
     click_on 'Clientes'
-    click_on customer.name.to_s
-    click_on 'Apagar'
+    within("tr#customer-#{customer.id}") do
+      find("a[href='#{customer_path(customer)}'][data-method='delete']").click
+    end
     # Assert
     expect(current_path).to eq(customers_path)
     expect(page).not_to have_content(customer.name)
