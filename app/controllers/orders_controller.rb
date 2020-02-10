@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_costumer_order_product, only: %i[create]
   def index
     @orders = Order.all
   end
@@ -23,9 +24,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @customer = Customer.find(params[:customer_id])
-    @order = @customer.orders.new(order_params)
-    @product = Product.find(@order.product_id)
     @order.code = SecureRandom.hex(6)
     @order.user = current_user
     return redirect_to @order, notice: t('.success') if @order.save
@@ -64,5 +62,11 @@ class OrdersController < ApplicationController
     @products = Product.all
     @plans = Plan.all
     @prices = Price.all
+  end
+
+  def set_costumer_order_product
+    @customer = Customer.find(params[:customer_id])
+    @order = @customer.orders.new(order_params)
+    @product = Product.find(@order.product_id)
   end
 end

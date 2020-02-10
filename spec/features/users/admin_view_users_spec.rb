@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'Admin view users' do
   scenario 'successfully' do
     user = create(:user, email: 'admin@teste.com', role: :admin)
-    create(:user, email:'teste@teste.com')
-    create(:user, email:'testando@testando.com')
+    create(:user, email: 'teste@teste.com')
+    create(:user, email: 'testando@testando.com')
     login_as(user, scope: :user)
     visit root_path
 
@@ -18,7 +18,7 @@ feature 'Admin view users' do
   end
 
   scenario 'Seller should not see users' do
-    user = create(:user, email:'testando@testando.com')
+    user = create(:user, email: 'testando@testando.com')
     login_as(user, scope: :user)
     visit users_path
 

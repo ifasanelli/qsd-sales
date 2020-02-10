@@ -4,7 +4,7 @@ feature 'User delete customer' do
   scenario 'Successfully' do
     # Arrange
     user = create(:user, email: 'tst@tst.com')
-    customer = create(:customer, user: user)
+    customer = create(:customer, name: 'Durval de Andrade', user: user)
     other_customer = create(:customer, name: 'Edgar A Poe',
                                        email: 'eap@gmail.com',
                                        document: '455.725.668-01',
