@@ -39,6 +39,9 @@
     <div class="button">
       <% if @order.status == 'open' %>
         <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn-primary-danger ls-ico-remove"  %>
+        <% if current_user.admin? %>
+          <%= link_to 'Aprovar', root_path, class: "ls-btn-primary ls-ico-checkmark"  %>
+        <% end %>
       <% end %>
     </div>
 <% end %>
