@@ -25,7 +25,7 @@ feature 'User search costumer for order' do
     expect(page).to have_content("#{price.name} - #{price.valor}")
   end
 
-  scenario 'Customer must be exist' do
+  scenario "Customer doens't exist" do
     user = create(:user)
 
     login_as user, scope: :user
@@ -34,6 +34,6 @@ feature 'User search costumer for order' do
     fill_in 'Pesquisar', with: '123123'
     click_on 'Buscar'
 
-    expect(page).to have_content('Cliente não cadastrado')
+    expect(page).to have_content(user.email)
   end
 end

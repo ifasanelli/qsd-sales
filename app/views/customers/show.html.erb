@@ -10,18 +10,22 @@
       <th>Telefone</th>
       <th>Data de Nascimento</th>
       <th>Usuário</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><%= @customer.name %></td>
-      <td><%= @customer.address %></td>
-      <td><%= @customer.document %></td>
-      <td><%= @customer.email %></td>
-      <td><%= @customer.phone %></td>
-      <td><%= @customer.birth_date %></td>
-      <td><%= @customer.user.email %></td>
-    </tr>
+    <% if current_user.admin? || @customer.user == current_user %>
+      <tr>
+        <td><%= @customer.name %></td>
+        <td><%= @customer.address %></td>
+        <td><%= @customer.document %></td>
+        <td><%= @customer.email %></td>
+        <td><%= @customer.phone %></td>
+        <td><%= @customer.birth_date %></td>
+        <td><%= @customer.user.email %></td>
+        <td><%= link_to 'Novo Pedido', new_customer_order_path(@customer) %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

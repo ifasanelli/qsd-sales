@@ -8,7 +8,13 @@
 </section>
 
 <% if @customers.empty? && params[:q] %>
-  <p>Cliente não cadastrado</p>
+  <%= link_to '', new_customer_path, id:"btn-new" %>
+  <script>
+    function myFunction() {
+      document.getElementById("btn-new").click();
+    }
+    myFunction()
+  </script>
 <% else %>
     <table class="ls-table">
       <thead>
@@ -37,5 +43,3 @@
 <% end %>
 
 <%= link_to 'Registrar Novo', new_customer_path %>
-
-
