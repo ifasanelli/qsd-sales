@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  context '#all' do
+  describe '.all' do
     it 'should get all products via API' do
       url = 'http://localhost:3000/api/v1/product_types'
       json_file = File.read(
@@ -33,7 +33,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  context '#find' do
+  describe '.find' do
     it 'find a Product Successfully' do
       url = 'http://localhost:3000/api/v1/product_types'
       json_file = File.read(

@@ -20,7 +20,8 @@ feature 'User view all orders' do
     order = create(:order)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
-
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
     login_as user, scope: :user
     visit root_path
     click_on 'Pedidos'
