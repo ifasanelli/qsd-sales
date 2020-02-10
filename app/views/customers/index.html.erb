@@ -1,7 +1,4 @@
-<h1>Clientes</h1>
-
-<%= link_to 'Registrar Novo', new_customer_path %>
-
+<h1><%= Customer.model_name.human(count: 2) %></h1>
 <section>
   <%= form_tag search_customers_path, method: 'get' do %>
     <%= label_tag :q, 'Pesquisar' %>
@@ -14,16 +11,14 @@
   <p>Cliente não cadastrado</p>
 <% else %>
 <table class="ls-table">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>CPF</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @customers.each do |customer| %>
+  <% @customers.each do |customer| %>
+    <thead>
+      <tr>
+        <th><%= Customer.human_attribute_name(:name) %></th>
+        <th><%= Customer.human_attribute_name(:name) %></th>
+      </tr>
+    </thead>
+    <tbody>
       <tr>
         <td><%= link_to customer.name, customer_path(customer) %></td>
         <td><%= customer.document %></td>
