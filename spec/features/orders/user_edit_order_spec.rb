@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User edit any order' do
   scenario 'Sucessfully' do
-    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     user = create(:user, email: 'xaviervi@hotmail.com')
     order = create(:order)
 
@@ -14,8 +14,8 @@ feature 'User edit any order' do
     end
     click_on 'Editar'
 
-    select 'Hospedagem', from: 'Produtos'
-    select 'Windows', from: 'Planos'
+    select 'Hospedagem', from: 'Produto'
+    select 'Windows', from: 'Plano'
     select "#{price.name} - #{price.valor}", from: 'Preço'
     click_on 'Efetivar'
 
@@ -28,7 +28,7 @@ feature 'User edit any order' do
   end
 
   scenario 'by index' do
-    price = Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     user = create(:user, email: 'xaviervi@hotmail.com')
     order = create(:order)
 
@@ -39,9 +39,9 @@ feature 'User edit any order' do
       find("a[href='#{edit_order_path(order)}']").click
     end
 
-    select 'Hospedagem', from: 'Produtos'
-    select 'Windows', from: 'Planos'
-    select "#{price.name} - #{price.valor}", from: 'Preço'
+    select 'Hospedagem', from: 'Produto'
+    select 'Windows', from: 'Plano'
+    select price.expose, from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)
@@ -49,6 +49,6 @@ feature 'User edit any order' do
     expect(page).to have_content(order.customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Windows')
-    expect(page).to have_content("#{price.name} - #{price.valor}")
+    expect(page).to have_content(price.expose)
   end
 end

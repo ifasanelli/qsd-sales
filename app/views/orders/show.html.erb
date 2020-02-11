@@ -1,6 +1,6 @@
 <div class="ls-title-intro ls-ico-text">Pedido: <%= @order.code %></div>
 <span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
-
+<%= "Preço Total: R$ #{@order.final_price}" %>
 <table class="ls-table">
   <thead>
     <tr>
