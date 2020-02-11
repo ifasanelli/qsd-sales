@@ -10,8 +10,9 @@ feature 'User create order' do
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
     prices = [Price.new(1, 1, 1, 'Mensal')]
-    allow(Price).to receive(:all).and_return(prices)
+    allow(Price).to receive(:find_by_plan(plan_id: 1)).and_return(prices)
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Pedido'

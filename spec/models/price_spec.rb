@@ -11,7 +11,7 @@ RSpec.describe Price, type: :model do
                                                    status: 200)
       allow(Faraday).to receive(:get).with(url).and_return(double_response)
 
-      result = Price.all
+      result = Price.find_by_plan(plan_id: 1)
 
       expect(result.length).to eq 3
       expect(result[0].expose).to eq 'CincoAnos - R$ 4.356,87'
@@ -25,14 +25,14 @@ RSpec.describe Price, type: :model do
 
       allow(Faraday).to receive(:get).with(url).and_return(double_response)
 
-      result = Price.all
+      result = Price.find_by_plan(plan_id: 1)
 
       expect(result.length).to eq 0
     end
   end
 
   describe '.find' do
-    it 'find a price successfully' do
+    it 'price successfully' do
       url = 'http://localhost:3000/api/v1/plans/1/prices'
       json_file = File.read(
         Rails.root.join('spec/support/jsons/price_index.json')
@@ -42,17 +42,17 @@ RSpec.describe Price, type: :model do
 
       allow(Faraday).to receive(:get).with(url).and_return(double_response)
 
-      result = Price.find(1)
+      result = Price.find(plan_id: 1, price_id: 1)
 
       expect(result.expose).to eq('CincoAnos - R$ 4.356,87')
     end
 
-    it 'find not return result' do
+    it 'and get no result' do
       url = 'http://localhost:3000/api/v1/plans/1/prices'
       double_response = double('faraday_response', status: 500)
       allow(Faraday).to receive(:get).with(url).and_return(double_response)
 
-      result = Price.find(1)
+      result = Price.find(plan_id: 1, price_id: 1)
 
       expect(result.nil?).to be_truthy
     end
