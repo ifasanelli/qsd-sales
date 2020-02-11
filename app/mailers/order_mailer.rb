@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: 'naoresponda@minilocaweb.com'
 
   def order_received
     @order = params[:order]

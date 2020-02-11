@@ -25,6 +25,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     @customer.user = current_user
     if @customer.save
+      CustomerMailer.with(customer: @customer).new_customer.deliver_now
       redirect_to @customer, notice: t('.success')
     else
       render :new
@@ -35,6 +36,7 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
+      CustomerMailer.with(customer: @customer).customer_updated.deliver_now
       redirect_to @customer, notice: t('.success')
     else
       render :edit
@@ -42,6 +44,7 @@ class CustomersController < ApplicationController
   end
 
   def destroy
+    CustomerMailer.with(customer: @customer).customer_deleted.deliver_now
     @customer.destroy
     redirect_to customers_path
   end
