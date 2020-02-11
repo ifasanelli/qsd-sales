@@ -22,7 +22,9 @@ feature 'User view all orders' do
     login_as user, scope: :user
     visit root_path
     click_on 'Pedidos'
-    click_on 'ABC123'
+    within("tr#order-#{order.id}") do
+      find("a[href='#{order_path(order)}'][data-method='get']").click
+    end
 
     expect(page).to have_content(order.user.id)
     expect(page).to have_content(order.customer.name)

@@ -13,7 +13,7 @@ feature 'User create order with coupon' do
     click_on 'Clientes'
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
-    select 'Linux', from: 'Planos'
+    select 'Linux', from: 'Plano'
     select price.expose, from: 'Preço'
     fill_in 'Cupom', with: coupon.name
     click_on 'Efetivar'

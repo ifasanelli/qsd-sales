@@ -11,7 +11,7 @@ feature 'User create order' do
     click_on 'Clientes'
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
-    select 'Linux', from: 'Planos'
+    select 'Linux', from: 'Plano'
     select price.expose, from: 'Preço'
     click_on 'Efetivar'
 
@@ -36,6 +36,6 @@ feature 'User create order' do
     click_on 'Efetivar'
 
     expect(page).to have_content('Preço não pode ficar em branco')
-    expect(page).to have_content('Planos não pode ficar em branco')
+    expect(page).to have_content('Plano não pode ficar em branco')
   end
 end

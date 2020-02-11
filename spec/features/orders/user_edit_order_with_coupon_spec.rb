@@ -9,8 +9,10 @@ feature 'User edit order with coupon' do
     login_as user, scope: :user
     visit root_path
     click_on 'Pedidos'
-    click_on order.code
-    click_on 'Alterar'
+    within("tr#order-#{order.id}") do
+      find("a[href='#{order_path(order)}'][data-method='get']").click
+    end
+    click_on 'Editar'
     fill_in 'Cupom', with: 'NATLOCA01'
     click_on 'Efetivar'
     # Assert
