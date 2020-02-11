@@ -5,6 +5,10 @@ feature 'User create order with coupon' do
     # Arrange
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     customer = create(:customer)
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
     coupon = Coupon.new(name: 'NATLOCA01', discount: 21)
     user = create(:user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
@@ -15,7 +19,7 @@ feature 'User create order with coupon' do
     click_on 'Clientes'
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
-    select 'Linux', from: 'Planos'
+    select 'Linux', from: 'Plano'
     select price.expose, from: 'Preço'
     fill_in 'Cupom', with: coupon.name
     click_on 'Efetivar'

@@ -7,8 +7,9 @@ feature 'User search costumer for order' do
     customer = create(:customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
 
-    # Act
     login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
