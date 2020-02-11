@@ -11,7 +11,9 @@ feature 'User view customer' do
     # Act
     visit root_path
     click_on 'Clientes'
-    click_on customer.name.to_s
+    within("tr#customer-#{customer.id}") do
+      find("a[href='#{customer_path(customer)}'][data-method='get']").click
+    end
     # Assert
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.address)

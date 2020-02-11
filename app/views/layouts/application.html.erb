@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 <!DOCTYPE html >
 <html class="ls-theme-light-green">
+=======
+<!DOCTYPE html>
+<html class="ls-theme-light-blue">
+>>>>>>> eb01ab37548c7a818c9018e27d0fb3314dc6a75e
   <head>
-    <title>QsdSales</title>
+    <title>Sistema de Vendas</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css">
     <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
@@ -17,18 +23,12 @@
 
     <main class="ls-main">
       <div class="container-fluid">
-        <nav>
-          <%= link_to 'Clientes', customers_path %>
-          <%= link_to 'Pedidos', orders_path  %>
-        </nav>
-        <div class="alerts">
           <% if notice %>
-            <div class="ls-alert-success" role="alert"> <%= notice %> </div>
+            <div class="ls-alert-success alerts" role="alert"> <%= notice %> </div>
           <% end %>
           <% if alert %>
-            <div class="ls-alert-warning" role="alert"> <%= alert %> </div>
+            <div class="ls-alert-warning alerts" role="alert"> <%= alert %> </div>
           <% end %>
-        </div>
         <%= yield %>
       </div>
     </main>
