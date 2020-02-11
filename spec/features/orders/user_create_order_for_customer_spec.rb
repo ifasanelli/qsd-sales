@@ -6,6 +6,10 @@ feature 'User create order' do
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     customer = create(:customer)
     login_as user, scope: :user
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
 
     visit root_path
     click_on 'Clientes'
@@ -28,6 +32,11 @@ feature 'User create order' do
     Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     create(:customer)
     login_as user, scope: :user
+
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
 
     visit root_path
     click_on 'Clientes'

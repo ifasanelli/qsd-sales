@@ -5,7 +5,11 @@ feature 'Admin cancel order' do
     user = create(:user)
     customer = create(:customer)
     order = create(:order, user: user, customer: customer)
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
 
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
     visit order_path(order)
     # click_on 'Pedidos'
     # click_on "#{order.code}"
@@ -25,7 +29,10 @@ feature 'Admin cancel order' do
     user = create(:user)
     customer = create(:customer)
     order = create(:order, user: user, customer: customer)
-
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
     visit order_path(order)
     click_on 'Cancelar'
     click_on 'Enviar'
