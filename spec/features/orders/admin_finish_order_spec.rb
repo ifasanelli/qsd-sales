@@ -18,7 +18,7 @@ feature 'User finish order' do
     click_on 'Aprovar'
 
     expect(page).to have_content('Pedido aprovado com sucesso')
-    expect(page).to have_content(order.code.to_s)
+    expect(page).to have_content(order.code)
     expect(page).to have_content('Status: Aprovado')
     expect(page).not_to have_link('Aprovar')
   end

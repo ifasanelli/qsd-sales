@@ -20,7 +20,7 @@ feature 'Admin cancel order' do
     click_on 'Enviar'
 
     expect(page).to have_content('Pedido cancelado com sucesso')
-    expect(page).to have_content(order.code.to_s)
+    expect(page).to have_content(order.code)
     expect(page).to have_content('Status: Cancelado')
     expect(page).to have_content('Motivo de cancelamento')
     expect(page).to have_content('Não podemos realizar o pedido')
@@ -42,6 +42,6 @@ feature 'Admin cancel order' do
 
     expect(page).to have_content('Motivo de cancelamento não pode ficar' \
                                  ' em branco')
-    expect(page).to have_content(order.code.to_s)
+    expect(page).to have_content(order.code)
   end
 end
