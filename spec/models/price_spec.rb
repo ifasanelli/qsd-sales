@@ -1,47 +1,60 @@
 require 'rails_helper'
 
-RSpec.describe Product, type: :model do
-  describe '.get_periodicities' do
-    it 'should get all periodicities' do
-      url = 'http://localhost:3000/api/v1/periodicities'
-      json_file = File.read(
-          Rails.root.join('spec/support/jsons/periodicity_index.json')
-      )
-      double_response = double('faraday_response', body: json_file,
-                                                    status: 200)
-
-      allow(Faraday).to receive(:get).with(url).and_return(double_response)
-
-      result = Price.get_periodicities
-
-      expect(result.length).to eq 4
-      expect(result[0][:name]).to eq 'Mensal'
-    end
-  end
-
+RSpec.describe Price, type: :model do
   describe '.all' do
     it 'should get all prices' do
-      url_periodicities = 'http://localhost:3000/api/v1/periodicities'
-      url_prices = 'http://localhost:3000/api/v1/plans/1/prices'
-      json_file_periodicities = File.read(
-          Rails.root.join('spec/support/jsons/periodicity_index.json')
-      )
-      json_file_prices = File.read(
+      url = 'http://localhost:3000/api/v1/plans/1/prices'
+      json_file = File.read(
           Rails.root.join('spec/support/jsons/price_index.json')
       )
-      double_response_periodicities = double('faraday_response', body: json_file_periodicities,
+      double_response = double('faraday_response', body: json_file,
                                                    status: 200)
-      double_response_prices = double('faraday_response', body: json_file_prices,
-                                                   status: 200)
-
-      allow(Faraday).to receive(:get).with(url_periodicities).and_return(double_response_periodicities)
-      allow(Faraday).to receive(:get).with(url_prices).and_return(double_response_prices)
-
+      allow(Faraday).to receive(:get).with(url).and_return(double_response)
 
       result = Price.all
 
       expect(result.length).to eq 3
-      expect(result[0].periodicity_name).to eq 'Mensal'
+      expect(result[0].expose).to eq 'CincoAnos - R$ 4.356,87'
+      expect(result[1].expose).to eq 'SeisAnos - R$ 5.351,09'
+      expect(result[2].expose).to eq 'SeteAnos - R$ 6.129,13'
+    end
+
+    it 'should return an empty array if API return error' do
+      url = 'http://localhost:3000/api/v1/plans/1/prices'
+      double_response = double('faraday_response', status: 500)
+
+      allow(Faraday).to receive(:get).with(url).and_return(double_response)
+
+      result = Price.all
+
+      expect(result.length).to eq 0
+    end
+  end
+
+  describe '.find' do
+    it 'find a price successfully' do
+      url = 'http://localhost:3000/api/v1/plans/1/prices'
+      json_file = File.read(
+        Rails.root.join('spec/support/jsons/price_index.json')
+      )
+      double_response = double('faraday_response', body: json_file,
+                                                   status: 200)
+
+      allow(Faraday).to receive(:get).with(url).and_return(double_response)
+
+      result = Price.find(1)
+
+      expect(result.expose).to eq('CincoAnos - R$ 4.356,87')
+    end
+
+    it 'find not return result' do
+      url = 'http://localhost:3000/api/v1/plans/1/prices'
+      double_response = double('faraday_response', status: 500)
+      allow(Faraday).to receive(:get).with(url).and_return(double_response)
+
+      result = Price.find(1)
+
+      expect(result.nil?).to be_truthy
     end
   end
 end
