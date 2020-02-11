@@ -7,11 +7,11 @@ feature 'Admin cancel order' do
     order = create(:order, user: user, customer: customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
-    prices = [Price.new(1, 1, 1, 'Mensal')]
-    allow(Price).to receive(:all).and_return(prices)
+    prices = [Price.new(1, 100, 1, 'Mensal')]
+    allow(Price).to receive(:find_by).and_return(prices)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
-    
+
     visit order_path(order)
     # click_on 'Pedidos'
     # click_on "#{order.code}"
@@ -33,8 +33,8 @@ feature 'Admin cancel order' do
     order = create(:order, user: user, customer: customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
-    prices = [Price.new(1, 1, 1, 'Mensal')]
-    allow(Price).to receive(:all).and_return(prices)
+    prices = [Price.new(1, 100, 1, 'Mensal')]
+    allow(Price).to receive(:find_by).and_return(prices)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
     visit order_path(order)

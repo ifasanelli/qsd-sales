@@ -9,8 +9,9 @@ feature 'User create order' do
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
-    prices = [Price.new(1, 1, 1, 'Mensal')]
-    allow(Price).to receive(:find_by_plan(plan_id: 1)).and_return(prices)
+    prices = [Price.new(1, 100, 1, 'Mensal')]
+    allow(Price).to receive(:all).and_return(prices)
+    allow(Price).to receive(:find).and_return(prices[0])
 
     login_as user, scope: :user
     visit root_path
@@ -31,8 +32,9 @@ feature 'User create order' do
 
   scenario 'Failed' do
     user = create(:user)
-    prices = [Price.new(1, 1, 1, 'Mensal')]
+    prices = [Price.new(1, 100, 1, 'Mensal')]
     allow(Price).to receive(:all).and_return(prices)
+    allow(Price).to receive(:find).and_return(prices[0])
     create(:customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)

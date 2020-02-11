@@ -21,7 +21,15 @@ class Price
     "#{endpoint}/api/#{api_version}"
   end
 
-  def self.find_by_plan(plan_id:)
+  def self.all(plans)
+    prices = []
+    plans.each do |plan|
+      prices += find_by(plan_id: plan.id)
+    end
+    prices
+  end
+
+  def self.find_by(plan_id:)
     request_url = "#{product_url}/plans/#{plan_id}/prices"
     response = Faraday.get(request_url)
 
@@ -32,14 +40,15 @@ class Price
     result = []
     json.each do |item|
       result << Price.new(item[:id], item[:plan_price],
-                            item[:plan_id], item[:periodicity])
+                          item[:plan_id], item[:periodicity])
     end
     result
   end
 
   def self.find(plan_id:, price_id:)
-    @price = find_by_plan(
-      plan_id: plan_id).detect { |price| price.id == price_id }
+    @price = find_by(
+      plan_id: plan_id
+    ).detect { |price| price.id == price_id }
   end
 
   def expose

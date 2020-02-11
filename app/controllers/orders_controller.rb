@@ -67,10 +67,7 @@ class OrdersController < ApplicationController
     @customers = Customer.all
     @products = Product.all
     @plans = Plan.all
-    @prices = []
-    for.each @plans do |plan|
-      @prices.append(Price.find_by_id(plan_id: plan.id))
-    end
+    @prices = Price.all(@plans)
   end
 
   def calculate_discount(order)
