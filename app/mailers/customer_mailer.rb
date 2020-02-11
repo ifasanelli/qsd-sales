@@ -8,7 +8,7 @@ class CustomerMailer < ApplicationMailer
 
   def customer_updated
     @customer = params[:customer]
-    mail(to: @customer.email, subject: "Atualização de dados")
+    mail(to: @customer.email, subject: 'Atualização de dados')
   end
 
   def customer_deleted
