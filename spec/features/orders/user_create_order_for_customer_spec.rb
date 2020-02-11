@@ -11,6 +11,7 @@ feature 'User create order' do
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Pedido'
@@ -31,13 +32,14 @@ feature 'User create order' do
     user = create(:user)
     Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     create(:customer)
-    login_as user, scope: :user
-
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Pedido'

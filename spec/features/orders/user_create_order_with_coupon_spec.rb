@@ -11,6 +11,8 @@ feature 'User create order with coupon' do
     allow(Plan).to receive(:all).and_return(plans)
     coupon = Coupon.new(name: 'NATLOCA01', discount: 21)
     user = create(:user)
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
     # Act
     login_as user, scope: :user
     visit root_path
