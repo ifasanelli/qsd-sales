@@ -10,6 +10,7 @@
 <%= @plan.name %>
 <strong><%= Order.human_attribute_name(:price) %>:</strong>
 <%= @price.expose %>
+<%= "Preço Total: R$ #{@order.final_price}" %>
 <%= link_to 'Alterar', edit_order_path(@order) %>
 
 <div class="ls-title-3">Pedido: <%= @order.code %></div>
@@ -22,7 +23,7 @@
 <% end %>
 <div class="button">
   <% if @order.status == 'open' %>
-    <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn-primary-danger ls-ico-remove"  %>
+    <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn red-delete" %>
   <% end %>
 </div>
 
