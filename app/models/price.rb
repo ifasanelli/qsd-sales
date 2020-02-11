@@ -1,20 +1,29 @@
 class Price
   include ActionView::Helpers::NumberHelper
-  attr_accessor :name, :id, :valor, :float_value
+  attr_accessor :id, :plan_price, :plan_id, :periodicity_name
 
-  def initialize(id: 0, name: '', valor: '', float_value: 0)
-    @name = name
+  def initialize(id, plan_price, plan_id, periodicity_name)
     @id = id
-    @valor = valor
-    @float_value = float_value
+    @plan_price = plan_price
+    @plan_id = plan_id
+    @periodicity_name = periodicity_name
   end
 
   def self.all
-    [new(id: 1, name: '1 Mes', float_value: 10),
-     new(id: 3, name: '3 Meses', float_value: 30),
-     new(id: 6, name: '6 Meses', float_value: 60),
-     new(id: 9, name: '9 Meses', float_value: 90),
-     new(id: 12, name: '12 Meses', float_value: 120)]
+    periodicities = get_periodicities
+
+    response = Faraday.get('http://localhost:3000/api/v1/plans/1/prices')
+    json = JSON.parse(response.body, symbolize_names: true)
+    return [] if response.status == 500
+
+    result = []
+    json.each do |item|
+      name = periodicities.find { |period| period[:id] == item[:periodicity_id] }[:name]
+      result << Price.new(item[:id], item[:plan_price],
+                            item[:plan_id], name)
+    end
+
+    result
   end
 
   def self.find(price_id)
@@ -22,6 +31,15 @@ class Price
   end
 
   def expose
-    "#{name} - #{number_to_currency(float_value)}"
+    "#{periodicity_name} - #{number_to_currency(plan_price)}"
   end
+
+  def self.get_periodicities
+    periodicity_url = 'http://localhost:3000/api/v1/periodicities'
+    response = Faraday.get(periodicity_url)
+    return [] if response.status == 500
+
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+
 end

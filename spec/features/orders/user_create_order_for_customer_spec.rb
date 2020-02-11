@@ -3,20 +3,21 @@ require 'rails_helper'
 feature 'User create order' do
   scenario 'Successfully' do
     user = create(:user)
-    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     customer = create(:customer)
     login_as user, scope: :user
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
+    prices = [Price.new(1, 1, 1, 'Mensal')]
+    allow(Price).to receive(:all).and_return(prices)
 
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
     select 'Linux', from: 'Plano'
-    select price.expose, from: 'Preço'
+    select prices[0].expose, from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(user.id)
@@ -24,20 +25,20 @@ feature 'User create order' do
     expect(page).to have_content(customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
-    expect(page).to have_content(price.expose)
+    expect(page).to have_content(prices[0].expose)
   end
 
   scenario 'Failed' do
     user = create(:user)
-    Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    prices = [Price.new(1, 1, 1, 'Mensal')]
+    allow(Price).to receive(:all).and_return(prices)
     create(:customer)
-    login_as user, scope: :user
-
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Pedido'

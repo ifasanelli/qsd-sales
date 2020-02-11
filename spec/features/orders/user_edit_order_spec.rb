@@ -2,13 +2,15 @@ require 'rails_helper'
 
 feature 'User edit any order' do
   scenario 'Sucessfully' do
-    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
+    prices = [Price.new(1, 1, 1, 'Mensal')]
+    allow(Price).to receive(:all).and_return(prices)
     user = create(:user, email: 'xaviervi@hotmail.com')
     order = create(:order)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
+    
     login_as user, scope: :user
     visit root_path
     click_on 'Pedidos'
@@ -19,7 +21,7 @@ feature 'User edit any order' do
 
     select 'Hospedagem', from: 'Produto'
     select 'Windows', from: 'Plano'
-    select "#{price.name} - #{price.valor}", from: 'Preço'
+    select "#{prices[0].expose}", from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)
@@ -27,13 +29,18 @@ feature 'User edit any order' do
     expect(page).to have_content(order.customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Windows')
-    expect(page).to have_content("#{price.name} - #{price.valor}")
+    expect(page).to have_content("#{prices[0].expose}")
   end
 
   scenario 'by index' do
-    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
+    prices = [Price.new(1, 1, 1, 'Mensal')]
+    allow(Price).to receive(:all).and_return(prices)
     user = create(:user, email: 'xaviervi@hotmail.com')
     order = create(:order)
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
 
     login_as user, scope: :user
     visit root_path
@@ -44,7 +51,7 @@ feature 'User edit any order' do
 
     select 'Hospedagem', from: 'Produto'
     select 'Windows', from: 'Plano'
-    select price.expose, from: 'Preço'
+    select prices[0].expose, from: 'Preço'
     click_on 'Efetivar'
 
     expect(page).to have_content(order.user.id)
@@ -52,6 +59,6 @@ feature 'User edit any order' do
     expect(page).to have_content(order.customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Windows')
-    expect(page).to have_content(price.expose)
+    expect(page).to have_content(prices[0].expose)
   end
 end

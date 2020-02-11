@@ -9,6 +9,9 @@ feature 'User edit order with coupon' do
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
+    prices = [Price.new(3, 1, 1, 'Mensal')]
+    allow(Price).to receive(:all).and_return(prices)
+
     # Act
     login_as user, scope: :user
     visit root_path
@@ -24,7 +27,7 @@ feature 'User edit order with coupon' do
     expect(page).to have_content(order.customer.identification)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
-    expect(page).to have_content('3 Meses - R$ 30,00')
+    expect(page).to have_content("#{prices[0].expose}")
     expect(page).to have_content('Preço Total: R$ 21.0')
   end
 end
