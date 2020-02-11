@@ -1,0 +1,14 @@
+<h2>Pedido Cancelado</h2>
+
+<h2>
+  Olá <%= @order.customer.name %>,
+</h2>
+
+<p>
+  Seu pedido foi cancelado!<br><br>
+
+  Motivo: <strong><%= @order.cancellation_reason %></strong><br><br>
+
+  Atenciosamente,<br>
+  Equipe Mini Locaweb<br>
+</p>

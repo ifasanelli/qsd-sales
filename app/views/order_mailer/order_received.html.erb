@@ -1,0 +1,18 @@
+<h2>Recebimento de Pedido</h2>
+
+<h2>
+  Olá <%= @order.customer.name %>,
+</h2>
+
+<p>
+  Recebemos seu pedido!!!<br><br>
+
+  Produto: <strong><%= @product.name %></strong><br>
+  Plano: <strong><%= @plan.name %></strong><br>
+  Valor: <strong><%= @price.expose %></strong><br><br>
+
+  O prazo para sua aprovação é de até 3 dias.<br><br>
+
+  Atenciosamente,<br>
+  Equipe Mini Locaweb<br>
+</p>

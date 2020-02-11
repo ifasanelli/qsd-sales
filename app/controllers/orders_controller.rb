@@ -24,7 +24,10 @@ class OrdersController < ApplicationController
     if order_params[:coupon_name].present?
       @order.final_price = calculate_discount(@order)
     end
-    return redirect_to @order, notice: t('.success') if @order.save
+    if @order.save
+      OrderMailer.with(order: @order).order_received.deliver_now
+      return redirect_to @order, notice: t('.success')
+    end
 
     load_customers_and_products
     render :new
@@ -41,8 +44,12 @@ class OrdersController < ApplicationController
     if order_params[:coupon_name].present?
       @order.final_price = calculate_discount(@order)
     end
-    @order.update(order_params)
-    redirect_to @order
+    if @order.update(order_params)
+      OrderMailer.with(order: @order).order_updated.deliver_now
+      redirect_to @order
+    else
+      render :edit
+    end
   end
 
   def cancel
@@ -52,9 +59,12 @@ class OrdersController < ApplicationController
   def finish_cancel
     @order = Order.find(params[:id])
     @order.status = :cancelled
-    return render :cancel unless @order.update(order_params)
-
-    redirect_to order_path(@order), notice: t('.success')
+    if @order.update(order_params)
+      redirect_to order_path(@order), notice: t('.success')
+      OrderMailer.with(order: @order).order_cancelled.deliver_now
+    else
+      render :cancel
+    end
   end
 
   private
