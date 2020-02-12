@@ -55,6 +55,12 @@ class OrdersController < ApplicationController
     redirect_to order_path(@order), notice: t('.success')
   end
 
+  def approve
+    @order = Order.find(params[:id])
+    @order.approved!
+    redirect_to @order, notice: t('.success')
+  end
+
   private
 
   def order_params

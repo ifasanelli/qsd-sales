@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   resources :orders, only: %i[index show edit update] do
     patch 'finish_cancel', on: :member
     get 'cancel', on: :member
+    patch 'finish_cancel', on: :member
+    patch 'approve', on: :member
   end
 end

@@ -32,7 +32,8 @@
 <% end %>
 
 <%= link_to 'Editar', edit_order_path(@order), class: "ls-btn blue-theme" %>
-  <% if @order.status == 'open' %>
+  <% if @order.open? %>
+    <%= link_to 'Aprovar', approve_order_path(@order), method: :patch, class: "ls-btn-primary ls-ico-checkmark"  %>
     <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn red-delete" %>
   <% end %>
 

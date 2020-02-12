@@ -15,7 +15,7 @@ class Plan
 
     result = []
     json.each do |item|
-      result << Product.new(item[:id], item[:name])
+      result << Plan.new(item[:id], item[:name])
     end
     result
   end
