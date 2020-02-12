@@ -2,10 +2,10 @@ require 'rails_helper'
 
 feature 'User create costumer' do
   scenario 'Successfully' do
+    user = create(:user)
+    login_as(user, scope: :user)
+    visit new_customer_path
     # Act
-    visit root_path
-    click_on 'Clientes'
-    click_on 'Registrar Novo'
     fill_in 'Nome', with: 'Douglas Adams'
     fill_in 'Endereço', with: 'Restaurante no fim do Universo'
     fill_in 'CPF', with: '198.725.668-02'
@@ -22,12 +22,14 @@ feature 'User create costumer' do
   end
 
   scenario 'Duplicated fields' do
+    user = create(:user, email: 'teste@email.com')
     create(:customer, document: '198.725.668-02',
                       phone: '(11) 96782-4553',
-                      email: 'douglas@gmail.com')
+                      email: 'douglas@gmail.com',
+                      user: user)
+    login_as(user, scope: :user)
     # Act
-    visit customers_path
-    click_on 'Registrar Novo'
+    visit new_customer_path
     fill_in 'Nome', with: ''
     fill_in 'Endereço', with: ''
     fill_in 'CPF', with: '198.725.668-02'

@@ -6,7 +6,8 @@ feature 'User edit any order' do
     allow(Price).to receive(:all).and_return(prices)
     allow(Price).to receive(:find).and_return(prices[0])
     user = create(:user, email: 'xaviervi@hotmail.com')
-    order = create(:order)
+    customer = create(:customer, user: user)
+    order = create(:order, user: user, customer: customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
@@ -38,7 +39,8 @@ feature 'User edit any order' do
     allow(Price).to receive(:all).and_return(prices)
     allow(Price).to receive(:find).and_return(prices[0])
     user = create(:user, email: 'xaviervi@hotmail.com')
-    order = create(:order)
+    customer = create(:customer, user: user)
+    order = create(:order, customer: customer, user: user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]

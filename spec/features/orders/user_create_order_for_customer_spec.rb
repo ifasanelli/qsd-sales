@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User create order' do
   scenario 'Successfully' do
     user = create(:user)
-    customer = create(:customer)
+    customer = create(:customer, user: user)
     login_as user, scope: :user
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
@@ -35,7 +35,7 @@ feature 'User create order' do
     prices = [Price.new(1, 100, 1, 'Mensal')]
     allow(Price).to receive(:all).and_return(prices)
     allow(Price).to receive(:find).and_return(prices[0])
-    create(:customer)
+    create(:customer, user: user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]

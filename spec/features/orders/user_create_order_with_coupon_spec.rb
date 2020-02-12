@@ -6,13 +6,13 @@ feature 'User create order with coupon' do
     prices = [Price.new(1, 100, 1, 'Mensal')]
     allow(Price).to receive(:all).and_return(prices)
     allow(Price).to receive(:find).and_return(prices[0])
-    customer = create(:customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
     coupon = Coupon.new(name: 'NATLOCA01', discount: 21)
     user = create(:user)
+    customer = create(:customer, user: user)
 
     # Act
     login_as user, scope: :user

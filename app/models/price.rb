@@ -17,6 +17,14 @@ class Price
     Rails.configuration.qsd_apis[:product_url]
   end
 
+  def self.coupon_endpoint
+    Rails.configuration.qsd_apis[:coupon_url]
+  end
+
+  def self.coupon_url
+    "#{coupon_endpoint}/api/#{api_version}"
+  end
+
   def self.product_url
     "#{endpoint}/api/#{api_version}"
   end
@@ -49,6 +57,18 @@ class Price
     @price = find_by(
       plan_id: plan_id
     ).detect { |price| price.id == price_id }
+  end
+
+  def self.discount(coupon_name, price, product_id)
+    request_url = "#{coupon_url}/coupons/confer?coupon=:#{coupon_name}" \
+                  "&price=:#{price}&product=:#{product_id}"
+    response = Faraday.get(request_url)
+
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    return json[:error] if response.status == 422 || response.status == 404
+
+    @float_value = price - json[:discount].to_i
   end
 
   def expose

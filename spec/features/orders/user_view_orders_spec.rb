@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'User view all orders' do
   scenario 'Sucessfully' do
     user = create(:user, email: 'xaviervi@hotmail.com')
-    order = create(:order, code: 'ABC123')
+    customer = create(:customer, user: user)
+    order = create(:order, code: 'ABC123', customer: customer, user: user)
 
     login_as user, scope: :user
     visit root_path
@@ -17,7 +18,8 @@ feature 'User view all orders' do
 
   scenario 'User view order' do
     user = create(:user, email: 'xaviervi@hotmail.com')
-    order = create(:order)
+    customer = create(:customer, user: user)
+    order = create(:order, customer: customer, user: user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]

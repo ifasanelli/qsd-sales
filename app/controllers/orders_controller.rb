@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_costumer_order_product, only: %i[create]
   before_action :find_customer, only: %i[new create]
   def index
     @orders = Order.all
@@ -17,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = @customer.orders.new(order_params)
+    @order.code = SecureRandom.hex(6)
     @order.user = current_user
     if order_params[:coupon_name].present?
       @order.final_price = calculate_discount(@order)
@@ -55,6 +57,12 @@ class OrdersController < ApplicationController
     redirect_to order_path(@order), notice: t('.success')
   end
 
+  def approve
+    @order = Order.find(params[:id])
+    @order.approved!
+    redirect_to @order, notice: t('.success')
+  end
+
   private
 
   def order_params
@@ -68,6 +76,12 @@ class OrdersController < ApplicationController
     @products = Product.all
     @plans = Plan.all
     @prices = Price.all(@plans)
+  end
+
+  def set_costumer_order_product
+    @customer = Customer.find(params[:customer_id])
+    @order = @customer.orders.new(order_params)
+    @product = Product.find(@order.product_id)
   end
 
   def calculate_discount(order)

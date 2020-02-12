@@ -2,7 +2,7 @@
 
 <% if @customer.errors.any? %>
   <% @customer.errors.full_messages.each do |message| %>
-    <div class="ls-alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert">
       <%= message %>
     </div>
   <% end %>
