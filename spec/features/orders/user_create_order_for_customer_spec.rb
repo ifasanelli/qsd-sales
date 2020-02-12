@@ -6,12 +6,17 @@ feature 'User create order' do
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
     customer = create(:customer, user: user)
     login_as user, scope: :user
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
-    select 'Linux', from: 'Planos'
+    select 'Linux', from: 'Plano'
     select price.expose, from: 'Preço'
     click_on 'Efetivar'
 
@@ -27,8 +32,12 @@ feature 'User create order' do
     user = create(:user)
     Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
     create(:customer, user: user)
-    login_as user, scope: :user
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
+    plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
+    allow(Plan).to receive(:all).and_return(plans)
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Pedido'
@@ -36,6 +45,6 @@ feature 'User create order' do
     click_on 'Efetivar'
 
     expect(page).to have_content('Preço não pode ficar em branco')
-    expect(page).to have_content('Planos não pode ficar em branco')
+    expect(page).to have_content('Plano não pode ficar em branco')
   end
 end

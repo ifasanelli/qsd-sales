@@ -1,4 +1,4 @@
-<h2><%= Customer.model_name.human(count: 1) %></h2>
+<h2 class="ls-title-intro ls-ico-users"><%= Customer.model_name.human(count: 1) %></h2>
 
 <table class="ls-table">
   <thead>
@@ -9,6 +9,7 @@
       <th><%= Customer.human_attribute_name(:email) %></th>
       <th><%= Customer.human_attribute_name(:phone) %></th>
       <th><%= Customer.human_attribute_name(:birth_date) %></th>
+      <th><%= User.human_attribute_name(:user) %></th>
     </tr>
   </thead>
   <tbody>

@@ -3,6 +3,8 @@ pt-BR:
   orders:
     finish_cancel:
       success: 'Pedido cancelado com sucesso'
+    approve:
+      success: 'Pedido aprovado com sucesso'
   activerecord:
     models:
       order:

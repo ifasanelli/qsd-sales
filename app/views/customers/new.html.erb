@@ -1,4 +1,4 @@
-<h1>Novo <%= Customer.model_name.human(count: 1) %></h1>
+<h1 class="ls-title-intro ls-ico-users">Novo <%= Customer.model_name.human(count: 1) %></h1>
 
 <% if @customer.errors.any? %>
   <% @customer.errors.full_messages.each do |message| %>
