@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     patch 'finish_cancel', on: :member
     patch 'approve', on: :member
   end
+  resources :users, only: %w[index edit update]
 end

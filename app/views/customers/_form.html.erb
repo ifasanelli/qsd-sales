@@ -23,10 +23,10 @@
     <%= f.label :birth_date %>
     <%= f.date_field :birth_date %>
   </div>
-  <div class="button">
-    <div class='ls-actions-btn button'>
-        <%= f.submit 'Salvar', class: 'ls-btn blue-theme' %>
-        <%= link_to 'Voltar', url_for(:back), class:"ls-btn" %>
+  <div>
+    <div class='ls-actions-btn' >
+        <%= f.submit 'Salvar', class: 'ls-btn' %>
+        <%= link_to 'Cancelar', url_for(:back), class:"ls-btn-danger" %>
     </div>
   </div>
 <% end %>

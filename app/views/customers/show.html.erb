@@ -9,6 +9,7 @@
       <th><%= Customer.human_attribute_name(:email) %></th>
       <th><%= Customer.human_attribute_name(:phone) %></th>
       <th><%= Customer.human_attribute_name(:birth_date) %></th>
+      <th><%= User.human_attribute_name(:user) %></th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
       <td><%= @customer.email %></td>
       <td><%= @customer.phone %></td>
       <td><%= @customer.birth_date %></td>
+      <td><%= @customer.user.email %></td>
     </tr>
   </tbody>
 </table>

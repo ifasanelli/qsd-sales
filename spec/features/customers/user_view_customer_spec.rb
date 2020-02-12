@@ -3,11 +3,14 @@ require 'rails_helper'
 feature 'User view customer' do
   scenario 'Successfully' do
     # Arrange
-    customer = create(:customer)
+    user = create(:user, email: 'administrador@email.com')
+    customer = create(:customer, user: user)
     other_customer = create(:customer, name: 'George R R Matin',
-                                       email: 'george@gmail.com',
+                                       email: 'georginho@gmail.com',
                                        document: '440.725.668-01',
-                                       phone: '(13) 98216-7677')
+                                       phone: '(13) 98216-7677',
+                                       user: user)
+    login_as(user, scope: :user)
     # Act
     visit root_path
     click_on 'Clientes'

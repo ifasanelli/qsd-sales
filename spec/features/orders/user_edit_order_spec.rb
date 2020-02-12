@@ -3,8 +3,9 @@ require 'rails_helper'
 feature 'User edit any order' do
   scenario 'Sucessfully' do
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
-    user = create(:user, email: 'xaviervi@hotmail.com')
-    order = create(:order)
+    user = create(:user)
+    customer = create(:customer, user: user)
+    order = create(:order, customer: customer, user: user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
@@ -33,8 +34,9 @@ feature 'User edit any order' do
 
   scenario 'by index' do
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
-    user = create(:user, email: 'xaviervi@hotmail.com')
-    order = create(:order)
+    user = create(:user)
+    customer = create(:customer, user: user)
+    order = create(:order, customer: customer, user: user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]

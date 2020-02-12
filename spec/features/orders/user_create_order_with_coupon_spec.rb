@@ -3,16 +3,15 @@ require 'rails_helper'
 feature 'User create order with coupon' do
   scenario 'Successfully' do
     # Arrange
+    user = create(:user)
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
-    customer = create(:customer)
-    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
-    allow(Product).to receive(:all).and_return(products)
+    customer = create(:customer, user: user)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
     coupon = Coupon.new(name: 'NATLOCA01', discount: 21)
-    user = create(:user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
+
     # Act
     login_as user, scope: :user
     visit root_path
@@ -23,6 +22,7 @@ feature 'User create order with coupon' do
     select price.expose, from: 'Preço'
     fill_in 'Cupom', with: coupon.name
     click_on 'Efetivar'
+
     # Assert
     expect(page).to have_content(user.id)
     expect(page).to have_content(customer.name)

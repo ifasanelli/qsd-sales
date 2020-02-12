@@ -2,14 +2,15 @@ require 'rails_helper'
 
 feature 'Admin cancel order' do
   scenario 'successfully' do
-    user = create(:user)
-    customer = create(:customer)
+    user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
     order = create(:order, user: user, customer: customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Pedidos'
     within("tr#order-#{order.id}") do
@@ -28,14 +29,15 @@ feature 'Admin cancel order' do
   end
 
   scenario 'and cancellation reason should not be empty' do
-    user = create(:user)
-    customer = create(:customer)
+    user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
     order = create(:order, user: user, customer: customer)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
 
+    login_as(user, scope: :user)
     visit order_path(order)
     click_on 'Pedidos'
     within("tr#order-#{order.id}") do

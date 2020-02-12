@@ -4,7 +4,7 @@ feature 'User create order' do
   scenario 'Successfully' do
     user = create(:user)
     price = Price.new(id: 3, name: '3 Meses', float_value: 30)
-    customer = create(:customer)
+    customer = create(:customer, user: user)
     login_as user, scope: :user
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
@@ -31,9 +31,7 @@ feature 'User create order' do
   scenario 'Failed' do
     user = create(:user)
     Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
-    create(:customer)
-    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
-    allow(Product).to receive(:all).and_return(products)
+    create(:customer, user: user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]

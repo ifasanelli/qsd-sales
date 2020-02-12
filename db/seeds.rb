@@ -1,9 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-Customer.create(name: 'Maria',address: 'SP',document: '332.176.876-6',email:'mariahtinha@hotmail.com',phone: '11-9999-9999',birth_date: '1996-10-10')
+User.create(email: 'joao@campus.com', password: '123456')
+User.create(email: 'joao_victor@campus.com', password: '123456')
+User.create(email: 'marcos@campus.com', password: '123456')
+User.create(email: 'walan@campus.com', password: '123456')
+User.create(email: 'fabio@campus.com', password: '123456')
+User.create(email: 'italo@campus.com', password: '123456')
+Customer.create(name: 'Roberta', address: 'Rua Marimar 94 SP', document: '35540930096', email: 'roberta@local.com', phone: '11-4135-3928', birth_date: '1974-08-08')
+Customer.create(name: 'Carlos', address: 'Rua Maria Mercedes 92 SP', document: '13900050031', email: 'carlos@local.com', phone: '11-4701-3252', birth_date: '1992-07-07')
+Customer.create(name: 'Pedro', address: 'Rua Maria do Bairro 95 CE', document: '34044895007', email: 'pedro@local.com', phone: '88-5378-9874', birth_date: '1987-03-04')
+Customer.create(name: 'Silvia', address: 'Rua Quinceañera 87 SP', document: '09296409004', email: 'silvia@local.com', phone: '11-99578-8874', birth_date: '1974-04-08')
+Customer.create(name: 'Roberta', address: 'Rua Luz y Sombra 89 SP', document: '34313126082', email: 'roberta@local.com', phone: '11-98884-8816', birth_date: '1974-07-10')
+Customer.create(name: 'Thalía', address: 'Las muchas vidas de Thalía 09 RJ', document: '16303679072', email: 'thalia@local.com', phone: '21-6537-5617', birth_date: '1971-10-26')
+Order.create(code: '3DZ7J1', date_order: '2019-11-31', status: 4, user_id: 1, customer_id: 1, product_id: 1, plan_id: 1, price_id: 1, final_price: 99.9)
+Order.create(code: 'YHGIBV', date_order: '2019-12-02', status: 4, user_id: 2, customer_id: 2, product_id: 2, plan_id: 2, price_id: 2, final_price: 199.9)
+Order.create(code: '0JYA5B', date_order: '2020-01-13', status: 4, user_id: 3, customer_id: 3, product_id: 1, plan_id: 1, price_id: 1, final_price: 99.9)
+Order.create(code: 'VC89OY', date_order: '2020-01-17', status: 4, user_id: 4, customer_id: 4, product_id: 2, plan_id: 3, price_id: 3, final_price: 149.8)
+Order.create(code: 'C1QKH8', date_order: '2020-01-23', status: 0, user_id: 5, customer_id: 5, product_id: 2, plan_id: 1, price_id: 1, final_price: 99.9)
+Order.create(code: '5SNGBG', date_order: '2020-01-23', status: 0, user_id: 6, customer_id: 6, product_id: 1, plan_id: 3, price_id: 3, final_price: 149.8)

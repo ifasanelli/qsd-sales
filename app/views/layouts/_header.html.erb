@@ -4,6 +4,7 @@
     <div class="ls-notification-topbar">
 
         <!-- Dropdown com detalhes da conta de usuário -->
+  <% if user_signed_in? %>
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account" id="dropdw">
       <a href="#" class="ls-ico-user">
         <span class="ls-name">Usuário</span>
@@ -19,6 +20,11 @@
          </ul>
       </nav>
     </div>
+        <% else %>
+            <a href="#" class="ls-ico-user">
+              <%= link_to 'Entrar', new_user_session_path %>
+            </a>
+    <% end %>
     </div>
 
     <span class="ls-show-sidebar ls-ico-menu"></span>
@@ -44,6 +50,7 @@
           <li>
             <%= link_to 'Clientes', customers_path, class: "ls-ico-user" %>
             <%= link_to 'Pedidos', orders_path, class: "ls-ico-text" %>
+            <%= link_to 'Usuários', users_path, class: "ls-ico-user" %>
           </li>
         </ul>
       </nav>
