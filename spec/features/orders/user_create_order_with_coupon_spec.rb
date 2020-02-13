@@ -3,14 +3,16 @@ require 'rails_helper'
 feature 'User create order with coupon' do
   scenario 'Successfully' do
     # Arrange
-    user = create(:user)
-    price = Price.new(id: 3, name: '3 Meses', float_value: 30)
-    customer = create(:customer, user: user)
+    prices = [Price.new(1, 100, 1, 'Mensal')]
+    allow(Price).to receive(:all).and_return(prices)
+    allow(Price).to receive(:find).and_return(prices[0])
+    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
+    allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
     coupon = Coupon.new(name: 'NATLOCA01', discount: 21)
-    products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
-    allow(Product).to receive(:all).and_return(products)
+    user = create(:user)
+    customer = create(:customer, user: user)
 
     # Act
     login_as user, scope: :user
@@ -19,7 +21,7 @@ feature 'User create order with coupon' do
     click_on 'Novo Pedido'
     select 'Hospedagem', from: 'Produto'
     select 'Linux', from: 'Plano'
-    select price.expose, from: 'Preço'
+    select prices[0].expose, from: 'Preço'
     fill_in 'Cupom', with: coupon.name
     click_on 'Efetivar'
 
@@ -29,7 +31,7 @@ feature 'User create order with coupon' do
     expect(page).to have_content(customer.document)
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
-    expect(page).to have_content(price.expose)
+    expect(page).to have_content(prices[0].expose)
     expect(page).to have_content('Preço Total: R$ 21.0')
   end
 end

@@ -1,20 +1,12 @@
 class Price
   include ActionView::Helpers::NumberHelper
-  attr_accessor :name, :id, :valor, :float_value
+  attr_accessor :id, :plan_price, :plan_id, :periodicity
 
-  def initialize(id: 0, name: '', valor: '', float_value: 0)
-    @name = name
+  def initialize(id, plan_price, plan_id, periodicity)
     @id = id
-    @valor = valor
-    @float_value = float_value
-  end
-
-  def self.all
-    [new(id: 1, name: '1 Mes', float_value: 10),
-     new(id: 3, name: '3 Meses', float_value: 30),
-     new(id: 6, name: '6 Meses', float_value: 60),
-     new(id: 9, name: '9 Meses', float_value: 90),
-     new(id: 12, name: '12 Meses', float_value: 120)]
+    @plan_price = plan_price
+    @plan_id = plan_id
+    @periodicity = periodicity
   end
 
   def self.api_version
@@ -22,15 +14,53 @@ class Price
   end
 
   def self.endpoint
+    Rails.configuration.qsd_apis[:product_url]
+  end
+
+  def self.coupon_endpoint
     Rails.configuration.qsd_apis[:coupon_url]
+  end
+
+  def self.coupon_url
+    "#{coupon_endpoint}/api/#{api_version}"
   end
 
   def self.product_url
     "#{endpoint}/api/#{api_version}"
   end
 
+  def self.all(plans)
+    prices = []
+    plans.each do |plan|
+      prices += find_by(plan_id: plan.id)
+    end
+    prices
+  end
+
+  def self.find_by(plan_id:)
+    request_url = "#{product_url}/plans/#{plan_id}/prices"
+    response = Faraday.get(request_url)
+
+    return [] if response.status == 500
+
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    result = []
+    json.each do |item|
+      result << Price.new(item[:id], item[:plan_price],
+                          item[:plan_id], item[:periodicity])
+    end
+    result
+  end
+
+  def self.find(plan_id:, price_id:)
+    @price = find_by(
+      plan_id: plan_id
+    ).detect { |price| price.id == price_id }
+  end
+
   def self.discount(coupon_name, price, product_id)
-    request_url = "#{product_url}/coupons/confer?coupon=:#{coupon_name}" \
+    request_url = "#{coupon_url}/coupons/confer?coupon=:#{coupon_name}" \
                   "&price=:#{price}&product=:#{product_id}"
     response = Faraday.get(request_url)
 
@@ -41,11 +71,7 @@ class Price
     @float_value = price - json[:discount].to_i
   end
 
-  def self.find(price_id)
-    @price = all.detect { |price| price.id == price_id }
-  end
-
   def expose
-    "#{name} - #{number_to_currency(float_value)}"
+    "#{periodicity} - #{number_to_currency(plan_price)}"
   end
 end

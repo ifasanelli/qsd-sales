@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User search costumer for order' do
   scenario 'sucessfully' do
     # Arrange
-    Price.new(id: 3, name: '3 Meses', valor: 'R$: 30,00')
+    Price.new(1, 100, 1, 'Mensal')
     user = create(:user)
     customer = create(:customer, user: user)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
@@ -33,5 +33,19 @@ feature 'User search costumer for order' do
     click_on 'Buscar'
 
     expect(current_path).to eq new_customer_path
+  end
+
+  scenario 'Seller cannot see customer from another seller ' do
+    user = create(:user)
+    other_user = create(:user, email: 'tst@tst.com')
+    customer = create(:customer, user: user)
+
+    login_as other_user, scope: :user
+    visit root_path
+    click_on 'Clientes'
+    fill_in 'Pesquisar', with: customer.document
+    click_on 'Buscar'
+
+    expect(page).to have_content('Este cliente pertence a outro vendedor')
   end
 end

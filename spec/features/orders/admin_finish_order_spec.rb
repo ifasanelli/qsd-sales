@@ -9,6 +9,8 @@ feature 'User finish order' do
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
+    prices = [Price.new(1, 100, 1, 'Mensal')]
+    allow(Price).to receive(:find_by).and_return(prices)
 
     login_as(user, scope: :user)
     visit root_path
@@ -32,6 +34,8 @@ feature 'User finish order' do
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
     allow(Plan).to receive(:all).and_return(plans)
+    prices = [Price.new(1, 100, 1, 'Mensal')]
+    allow(Price).to receive(:find_by).and_return(prices)
 
     login_as(user, scope: :user)
     visit order_path(order)

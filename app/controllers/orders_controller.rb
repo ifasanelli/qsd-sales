@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @product = Product.find(@order.product_id)
     @plan = Plan.find(@order.plan_id)
-    @price = Price.find(@order.price_id)
+    @price = Price.find(plan_id: @order.plan_id, price_id: @order.price_id)
   end
 
   def new
@@ -75,7 +75,7 @@ class OrdersController < ApplicationController
     @customers = Customer.all
     @products = Product.all
     @plans = Plan.all
-    @prices = Price.all
+    @prices = Price.all(@plans)
   end
 
   def set_costumer_order_product
