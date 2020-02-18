@@ -6,11 +6,6 @@ class Coupon
     @status = status
   end
 
-  def self.all
-    [new(name: 'NATLOCA01', discount: 21),
-     new(name: 'NATLOCA02', discount: 21)]
-  end
-
   def self.api_version
     'v1'
   end
@@ -31,9 +26,5 @@ class Coupon
     json = JSON.parse(response.body, symbolize_names: true)
 
     @status = json[:status]
-  end
-
-  def self.find(name)
-    @coupon = all.detect { |coupon| coupon.name == name }
   end
 end
