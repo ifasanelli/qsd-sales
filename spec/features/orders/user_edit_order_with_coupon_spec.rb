@@ -12,6 +12,7 @@ feature 'User edit order with coupon' do
     prices = [Price.new(3, 100, 1, 'Mensal')]
     allow(Price).to receive(:all).and_return(prices)
     allow(Price).to receive(:find).and_return(prices[0])
+    allow_any_instance_of(Price).to receive(:discount).and_return(21)
 
     # Act
     login_as user, scope: :user

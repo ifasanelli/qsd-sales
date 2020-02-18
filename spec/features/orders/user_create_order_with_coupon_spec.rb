@@ -6,6 +6,7 @@ feature 'User create order with coupon' do
     prices = [Price.new(1, 100, 1, 'Mensal')]
     allow(Price).to receive(:all).and_return(prices)
     allow(Price).to receive(:find).and_return(prices[0])
+    allow_any_instance_of(Price).to receive(:discount).and_return(79)
     products = [Product.new(1, 'Hospedagem'), Product.new(2, 'CLOUD')]
     allow(Product).to receive(:all).and_return(products)
     plans = [Plan.new(1, 'Linux'), Plan.new(2, 'Windows')]
@@ -32,6 +33,6 @@ feature 'User create order with coupon' do
     expect(page).to have_content('Hospedagem')
     expect(page).to have_content('Linux')
     expect(page).to have_content(prices[0].expose)
-    expect(page).to have_content('Preço Total: R$ 21.0')
+    expect(page).to have_content('Preço Total: R$ 79.0')
   end
 end

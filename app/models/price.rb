@@ -41,7 +41,7 @@ class Price
     request_url = "#{product_url}/plans/#{plan_id}/prices"
     response = Faraday.get(request_url)
 
-    return [] if response.status == 500
+    return [] if response.status == 500 || response.status == 404
 
     json = JSON.parse(response.body, symbolize_names: true)
 
@@ -59,16 +59,16 @@ class Price
     ).detect { |price| price.id == price_id }
   end
 
-  def self.discount(coupon_name, price, product_id)
-    request_url = "#{coupon_url}/coupons/confer?coupon=:#{coupon_name}" \
-                  "&price=:#{price}&product=:#{product_id}"
+  def discount(coupon_name, product_id)
+    request_url = "#{Price.coupon_url}/coupons/confer?coupon=#{coupon_name}" \
+                  "&price=#{plan_price}&product=#{product_id}"
     response = Faraday.get(request_url)
 
     json = JSON.parse(response.body, symbolize_names: true)
 
     return json[:error] if response.status == 422 || response.status == 404
 
-    @float_value = price - json[:discount].to_i
+    @plan_price.to_f - json[:discount].to_f
   end
 
   def expose

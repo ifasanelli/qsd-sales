@@ -6,11 +6,6 @@ class Coupon
     @status = status
   end
 
-  def self.all
-    [new(name: 'NATLOCA01', discount: 21),
-     new(name: 'NATLOCA02', discount: 21)]
-  end
-
   def self.api_version
     'v1'
   end
@@ -19,22 +14,17 @@ class Coupon
     Rails.configuration.qsd_apis[:coupon_url]
   end
 
-  def self.product_url
+  def self.coupon_url
     "#{endpoint}/api/#{api_version}"
   end
 
   def self.burn(code)
-    request_url = "#{product_url}/coupon/#{code}/burn"
+    request_url = "#{coupon_url}/coupon/#{code}/burn"
     response = Faraday.get(request_url)
+    return [] if response.status == 404
 
     json = JSON.parse(response.body, symbolize_names: true)
 
-    return [] if response.status == 404
-
     @status = json[:status]
-  end
-
-  def self.find(name)
-    @coupon = all.detect { |coupon| coupon.name == name }
   end
 end
