@@ -16,7 +16,7 @@ feature 'User log in' do
     expect(page).to have_content('Login efetuado com sucesso.')
     expect(page).to have_content('Sair')
     expect(page).to_not have_content('Entrar')
-    expect(page).to have_content("Olá, #{user.email}")
+    expect(page).to have_content("Logado como: #{user.email}")
   end
 
   scenario 'user log out' do
@@ -26,10 +26,6 @@ feature 'User log in' do
 
     click_on 'Sair'
 
-    expect(current_path).to eq(root_path)
-    expect(page).to have_content('Logout efetuado com sucesso.')
-    expect(page).to have_content('Entrar')
-    expect(page).to_not have_content('Sair')
-    expect(page).to_not have_content("Olá, #{user.email}")
+    expect(current_path).to eq(new_user_session_path)
   end
 end
