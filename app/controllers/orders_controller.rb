@@ -21,9 +21,8 @@ class OrdersController < ApplicationController
   def create
     @order.code = SecureRandom.hex(6)
     @order.user = current_user
-    if order_params[:coupon_name].present?
-      @order.final_price = calculate_discount(@order)
-    end
+    @price = Price.find(plan_id: @order.plan_id, price_id: @order.price_id)
+    @order.final_price = select_price
     return redirect_to @order, notice: t('.success') if @order.save
 
     load_customers_and_products
@@ -38,9 +37,8 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.coupon_name = order_params[:coupon_name]
-    if order_params[:coupon_name].present?
-      @order.final_price = calculate_discount(@order)
-    end
+    @price = Price.find(plan_id: @order.plan_id, price_id: @order.price_id)
+    @order.final_price = select_price
     @order.update(order_params)
     redirect_to @order
   end
@@ -59,6 +57,7 @@ class OrdersController < ApplicationController
 
   def approve
     @order = Order.find(params[:id])
+    Coupon.burn(@order.coupon_name) if @order.coupon_name.present?
     @order.approved!
     redirect_to @order, notice: t('.success')
   end
@@ -84,9 +83,13 @@ class OrdersController < ApplicationController
     @product = Product.find(@order.product_id)
   end
 
-  def calculate_discount(order)
-    coupon = Coupon.find(order.coupon_name)
-    @final_price = coupon.discount
+  def select_price
+    return @price.plan_price if order_params[:coupon_name].blank?
+
+    result = @price.discount(@order.coupon_name, @order.product_id)
+    return @price.plan_price if result.is_a?(String)
+
+    result
   end
 
   def find_customer

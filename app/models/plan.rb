@@ -22,7 +22,7 @@ class Plan
     request_url = "#{product_url}/plans"
     response = Faraday.get(request_url)
 
-    return [] if response.status == 500
+    return [] if response.status == 500 || response.status == 404
 
     json = JSON.parse(response.body, symbolize_names: true)
 

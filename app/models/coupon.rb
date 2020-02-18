@@ -19,17 +19,16 @@ class Coupon
     Rails.configuration.qsd_apis[:coupon_url]
   end
 
-  def self.product_url
+  def self.coupon_url
     "#{endpoint}/api/#{api_version}"
   end
 
   def self.burn(code)
-    request_url = "#{product_url}/coupon/#{code}/burn"
+    request_url = "#{coupon_url}/coupon/#{code}/burn"
     response = Faraday.get(request_url)
+    return [] if response.status == 404
 
     json = JSON.parse(response.body, symbolize_names: true)
-
-    return [] if response.status == 404
 
     @status = json[:status]
   end
