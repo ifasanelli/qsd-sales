@@ -14,7 +14,7 @@
     <% @orders.each do |order| %>
       <tr id="order-<%= order.id %>">
         <td><%= order.code %></td>
-        <td><%= order.user.id %></td>
+        <td><%= order.user.email %></td>
         <td><%= order.customer.identification %></td>
         <td><%= order.product_id %></td>
         <td>
