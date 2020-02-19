@@ -25,8 +25,6 @@
 </table>
 
 <% if current_user.admin? || @order.user == current_user %>
-  <div class="ls-title-3">Pedido: <%= @order.code %></div>
-  <span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
   <% if @order.cancelled? %>
     <div class="reason">
       <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3>

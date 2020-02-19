@@ -1,35 +1,25 @@
 <div class="ls-topbar ">
-
       <!-- Barra de Notificações -->
     <div class="ls-notification-topbar">
 
         <!-- Dropdown com detalhes da conta de usuário -->
-  <% if user_signed_in? %>
-    <div data-ls-module="dropdown" class="ls-dropdown ls-user-account" id="dropdw">
-      <a href="#" class="ls-ico-user">
-        <span class="ls-name">Usuário</span>
-      </a>
-
-      <nav class="ls-dropdown-nav ls-user-menu">
-        <ul>
-          <li><a href="#">Meus dados</a></li>
-          <li>
-          <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-        </li>
-
-         </ul>
-      </nav>
-    </div>
-        <% else %>
-            <a href="#" class="ls-ico-user">
-              <%= link_to 'Entrar', new_user_session_path %>
-            </a>
-    <% end %>
+      <div data-ls-module="dropdown" class="ls-dropdown ls-user-account" id="dropdw">
+        <a class="ls-ico-user">
+          <span class="ls-name"><%= current_user.nickname %></span>
+        </a>
+        <nav class="ls-dropdown-nav ls-user-menu">
+          <ul>
+            <li>
+              <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
 
     <span class="ls-show-sidebar ls-ico-menu"></span>
 
-  <a href= "/"  class="ls-go-next"><span class="ls-text">Voltar à lista de serviços</span></a>
+    <a href= "/"  class="ls-go-next"><span class="ls-text">Voltar à lista de serviços</span></a>
   
 
 
@@ -40,6 +30,7 @@
       </a>
     </h1>
 </div>
+
 <aside class="ls-sidebar">
 
   <div class="ls-sidebar-inner">

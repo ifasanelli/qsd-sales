@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   enum role: { seller: 0, admin: 5 }
   has_many :customers, dependent: :restrict_with_exception
+
+  def nickname
+    email.split('@').first
+  end
 end
